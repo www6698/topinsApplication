@@ -4,6 +4,187 @@
         "ArenaNET"
     </assembly>
     <members>
+        <member name="M:ArenaNET.Socket.ReceiveImages">
+            <summary>
+Receives multiple images from clients.
+</summary>
+            <returns>List of received images</returns>
+        </member>
+        <member name="M:ArenaNET.Socket.ReceiveImage">
+            <summary>
+Receives an image from clients.
+</summary>
+            <returns>image received</returns>
+        </member>
+        <member name="M:ArenaNET.Socket.ReceiveMessage">
+            <summary>
+Receives and handles text data from clients.
+</summary>
+            <returns>Received message as a string</returns>
+        </member>
+        <member name="M:ArenaNET.Socket.CloseListener">
+            <summary>
+Closes the listening socket and frees resources.
+</summary>
+        </member>
+        <member name="M:ArenaNET.Socket.OpenListener(System.UInt16)">
+            <summary>
+Initializes a listening socket for receiving data.
+</summary>
+            <param name="port">Port number to bind the listening socket</param>
+        </member>
+        <member name="M:ArenaNET.Socket.SendImage(ArenaNET.IImage)">
+            <summary>
+Sends an image to the configured destination.
+</summary>
+            <param name="image">The image object to be sent.</param>
+        </member>
+        <member name="M:ArenaNET.Socket.SendCommand(System.String)">
+            <summary>
+Sends a command message to the configured destination.
+</summary>
+            <param name="message">The command message to be sent as a string.</param>
+        </member>
+        <member name="M:ArenaNET.Socket.AddDestination(System.UInt16)">
+            <summary>
+Configures the destination address and port for sending messages.
+</summary>
+            <param name="port">Port number of the destination</param>
+        </member>
+        <member name="M:ArenaNET.Socket.CloseSender">
+            <summary>
+Closes the sending socket and releases any allocated resources.
+</summary>
+        </member>
+        <member name="M:ArenaNET.Socket.OpenSender">
+            <summary>
+Initializes the sending socket.
+</summary>
+        </member>
+        <member name="M:ArenaNET.Socket.Finalize">
+            <summary>
+A finalizer.
+</summary>
+        </member>
+        <member name="M:ArenaNET.Socket.Dispose">
+            <summary>
+A destructor.
+</summary>
+        </member>
+        <member name="T:ArenaNET.Socket">
+            <summary>
+Provides functionality for socket communication, handling both sending and receiving of data and images.
+</summary>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.SplitChannels(ArenaNET.IImage)">
+            <summary>
+Split a multi-channel image (IImage).
+</summary>
+            <param name="image">Image to split</param>
+            <returns>List of images (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.DeinterleaveChannelsShallow(System.Byte[],System.UInt64,ArenaNET.IImage)">
+            <summary>
+Scales an image (IImage).
+</summary>
+            <param name="image">Image to convert</param>
+            <param name="data">Image data</param>
+            <param name="len">Image length</param>
+            <returns>Deinterleaved image (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.DecompressImage(ArenaNET.ICompressedImage)">
+            <summary>
+Decompresses a compressed image (ICompressedImage).
+</summary>
+            <param name="compressedImage">Compressed image to decompress</param>
+            <returns>Decompressed image (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.DestroyCompressedImage(ArenaNET.ICompressedImage)">
+            <summary>
+Destroys a compressed image (ICompressedImage).
+</summary>
+            <param name="compressedImage">Compressed image to destroy (created, copied, and converted images must be destroyed; images retrieved from a device must not be destroyed).</param>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.Destroy(ArenaNET.IImage)">
+            <summary>
+Destroys an image (IImage).
+</summary>
+            <param name="image">Image to destroy (created, copied, and converted images must be destroyed; images retrieved from a device must not be destroyed).</param>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.Convert(ArenaNET.IImage,&lt;unknown type&gt;,ArenaNET.EBayerAlgorithm)">
+            <summary>
+Converts an image, using a particular bayer algorithm, if applicable.
+</summary>
+            <param name="image">Image to convert</param>
+            <param name="pixelFormat">Pixel format to convert to</param>
+            <param name="bayerAlgorithm">Algorithm to use for interpolating bayer data</param>
+            <returns>Converted image (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.Convert(ArenaNET.IImage,&lt;unknown type&gt;)">
+            <summary>
+Converts an image (IImage).
+</summary>
+            <param name="image">Image to convert</param>
+            <param name="pixelFormat">Pixel format to convert to</param>
+            <returns>Converted image (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.CopyCompressedImage(ArenaNET.ICompressedImage)">
+            <summary>
+Copies a compressed image (ICompressedImage).
+</summary>
+            <param name="compressedImage">Compressed image to copy</param>
+            <returns>Deep copy of the original (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.Copy(ArenaNET.IImage)">
+            <summary>
+Copies an image (IImage).
+</summary>
+            <param name="image">Image to copy</param>
+            <returns>Deep copy of the original (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.Shallow(System.Byte[],System.UInt32,System.UInt32,&lt;unknown type&gt;)">
+            <summary>
+Creates an image using user-memory (IImage).
+</summary>
+            <param name="data">Image data</param>
+            <param name="width">Image width</param>
+            <param name="height">Image height</param>
+            <param name="pixelFormat">Image pixel format</param>
+            <returns>An image from user-memory (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.CreateCompressedImage(System.Byte[],&lt;unknown type&gt;)">
+            <summary>
+Creates a compressed image (ICompressedImage).
+</summary>
+            <param name="data">Compressed image data</param>
+            <param name="pixelFormat">Image pixel format</param>
+            <returns>A created compressed image (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.Create(System.Byte[],System.UInt32,System.UInt32,&lt;unknown type&gt;)">
+            <summary>
+Creates an image (IImage).
+</summary>
+            <param name="data">Image data</param>
+            <param name="width">Image width</param>
+            <param name="height">Image height</param>
+            <param name="pixelFormat">Image pixel format</param>
+            <returns>A created image (must be destroyed)</returns>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.Finalize">
+            <summary>
+A finalizer.
+</summary>
+        </member>
+        <member name="M:ArenaNET.ImageFactory.Dispose">
+            <summary>
+A destructor.
+</summary>
+        </member>
+        <member name="T:ArenaNET.ImageFactory">
+            <summary>
+Static image factory for creating, copying, and converting images.
+</summary>
+        </member>
         <member name="T:ArenaNET.EBayerAlgorithm">
             <summary>
 Represents the different algorithms available to interpolate Bayer image data.
@@ -2708,7 +2889,7 @@ Constants that can be used with various function calls
 
 </member>
         <member name="M:Arena.ICompressedImage.Dispose">
- @fn virtual ~IChunkData()
+ @fn virtual ~ICompressedImage()
 
  A destructor
 
@@ -3659,6 +3840,12 @@ Constants that can be used with various function calls
   - Arena::IChunkData
 
 </member>
+        <member name="M:Arena.SetNodeValue(GenApi_3_3_LUCID.INodeMap*,GenICam_3_3_LUCID.gcstring!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Byte!System.Runtime.CompilerServices.IsConst*,System.Int64*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+@cond INTERNAL
+</member>
+        <member name="M:Arena.GetNodeValue(GenApi_3_3_LUCID.INodeMap*,GenICam_3_3_LUCID.gcstring!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Byte*,System.Int64*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+@cond INTERNAL
+</member>
         <member name="M:Arena.EIncModeClass.ToString(GenApi_3_3_LUCID._EIncMode)">
  @fn static GenICam::gcstring ToString(GenApi::EIncMode Value)
 
@@ -4434,11 +4621,11 @@ Constants that can be used with various function calls
 		*
 		*
 		* <B> GetNextEvsTriggerEvent </B> will wait until a trigger event has been
-		* decoded from received event data from a camera. It must be called after 
-		* the stream has started (Arena::IDevice::StartStream) and before the stream 
+		* decoded from received event data from a camera. It must be called after
+		* the stream has started (Arena::IDevice::StartStream) and before the stream
 		* has stopped (Arena::IDevice::StopStream).
 		*
-		* This function can be used to track external trigger events decoded on the 
+		* This function can be used to track external trigger events decoded on the
 		* currently active event stream.
 		*
 		* @warning
@@ -4545,7 +4732,7 @@ Constants that can be used with various function calls
 		 * an image arrives, the user-implemented OnImage() will be called. The
 		 * user-implemented OnImage() will receive a pointer to the image data
 		 * (Arena::IImage* pImage).
-		* 
+		*
 		 * Callbacks can be registered whether or not the device is currently
 		 * streaming. Multiple callbacks can be registered for a device and each
 		 * will be called sequentially in the order that they have been
@@ -4554,8 +4741,8 @@ Constants that can be used with various function calls
 		 * RegisterImageCallback will throw:
 		 *  - InvalidArgumentException if the callback argument is NULL
 		 *  - LogicalErrorException if the callback has already been registered
-		* 
-		* 
+		*
+		*
 		* \code{.cpp}
 		*   // Register callback object
 		*   {
@@ -4592,7 +4779,7 @@ Constants that can be used with various function calls
         <member name="M:Arena.IDevice.GetNodeMap">
  @fn virtual GenApi::INodeMap* GetNodeMap()
 
- @return 
+ @return
   - Type: GenApi::INodeMap*
   - Pointer to the main node map for the device
 
@@ -4638,12 +4825,12 @@ Constants that can be used with various function calls
  the same. Basically, the GenTL node map queries the software for
  information whereas the main node map queries the device.
 
- @warning 
+ @warning
   - Provides access to main node map, which is not to be confused with the
     GenTL device node map.
   - May throw GenICam::GenericException or other derived exception.
 
- @see 
+ @see
   - Arena::ISystem::CreateDevice
   - Arena::ISystem::DestroyDevice
   - Arena::IDevice::GetNodeMap
@@ -4656,7 +4843,7 @@ Constants that can be used with various function calls
         <member name="M:Arena.IDevice.DeinitializeEvents">
  @fn virtual void DeinitializeEvents()
 
- @return 
+ @return
   - none
 
  <B> DeinitializeEvents </B> stops the underlying events engine from
@@ -4668,12 +4855,12 @@ Constants that can be used with various function calls
  Roughly speaking, <B> DeinitializeEvents </B> takes all necessary
  steps to undoing and cleaning up the event infrastructure's
  initialization
- (Arena::IDevice::InitializeEvents). This includes: 
+ (Arena::IDevice::InitializeEvents). This includes:
   - Stopping the worker thread set up to listen for events.
   - Closes the message channel socket.
   - Unregisters all event buffers and deallocates their memory.
 
- @warning 
+ @warning
   - Event infrastructure must be deinitialized.
   - Stops events processing.
   - Deallocates event data that has not yet been processed.
@@ -4685,7 +4872,7 @@ Constants that can be used with various function calls
   - Unregister all buffers and clean up memory that was allocated for
     them.
 
- @see 
+ @see
   - Arena::IDevice::InitializeEvents
   - Arena::IDevice::WaitOnEvent
   - Arena::IDevice::DeinitializeEvents
@@ -4727,7 +4914,7 @@ Constants that can be used with various function calls
   - Type: Arena::IBuffer*
   - Buffer to requeue
 
- @return 
+ @return
   - none
 
  <B> RequeueBuffer </B> relinquishes control of a buffer
@@ -4761,20 +4948,20 @@ Constants that can be used with various function calls
  		Arena::IImage* pRetrievedImage = pDevice-&gt;GetImage();
  		// ...
  		pDevice-&gt;RequeueBuffer(pRetrievedImage);
- 		
+
  		Arena::IImage* pCreatedImage = Arena::ImageFactory::Create(pData, height, width, bpp, size, pixelFormat);
  		// ...
  		Arena::ImageFactory::Destroy(pCreatedImage);
  	}
  \endcode
 
- @warning 
+ @warning
   - Buffers should be requeued.
   - Used only on buffers retrieved from a device, not on images
     created through the image factory.
   - May throw GenICam::GenericException or other derived exception.
 
- @see 
+ @see
   - Arena::IBuffer
   - Arena::IImage
   - Arena::IChunkData
@@ -4794,7 +4981,7 @@ Constants that can be used with various function calls
   - Unit: milliseconds
   - Maximum time to wait for an image
 
- @return 
+ @return
   - Type:: Arena::ICompressedImage*
   - Pointer to the next buffer in the output queue if it contains
     compressed image data
@@ -4855,14 +5042,14 @@ Constants that can be used with various function calls
  recommended to copy the data (Arena::ImageFactory::CreateCompressedImage) and requeue
  the buffer.
 
- @warning 
+ @warning
   - Does not guarantee valid compressed image data.
   - Returns NULL for non-image formats.
   - Compressed images should be requeued to prevent starvation of the
     acquisition engine.
   - May throw GenICam::GenericException or other derived exception.
 
- @see 
+ @see
   - Arena::ICompressedImage
   - Arena::IDevice::StartStream
   - Arena::IDevice::StopStream
@@ -4880,7 +5067,7 @@ Constants that can be used with various function calls
   - Unit: milliseconds
   - Maximum time to wait for an image
 
- @return 
+ @return
   - Type:: Arena::IImage*
   - Pointer to the next buffer in the output queue if it contains
     image data
@@ -4941,14 +5128,14 @@ Constants that can be used with various function calls
  recommended to copy the data (Arena::ImageFactory::Create) and requeue
  the buffer.
 
- @warning 
+ @warning
   - Does not guarantee valid image data.
   - Returns NULL for non-image formats.
   - Images should be requeued to prevent starvation of the
     acquisition engine.
   - May throw GenICam::GenericException or other derived exception.
 
- @see 
+ @see
   - Arena::IImage
   - Arena::IDevice::StartStream
   - Arena::IDevice::StopStream
@@ -4961,7 +5148,7 @@ Constants that can be used with various function calls
         <member name="M:Arena.IDevice.StopStream">
  @fn virtual void StopStream()
 
- @return 
+ @return
   - none
 
  <B> StopStream </B> stops the device from streaming image/chunk data
@@ -4990,13 +5177,13 @@ Constants that can be used with various function calls
  	{
  		Arena::IImage* pImage = pDevice-&gt;GetImage();
  		Arena::IImage* pCopiedImage = Arena::ImageFactory::Copy(pImage);
- 		
+
  		pDevice-&gt;RequeueBuffer(pImage);
  		pDevice-&gt;StopStream();
  	}
  \endcode
 
- @warning 
+ @warning
   - Stream must be stopped.
   - Updates write access to certain nodes.
   - Disallows retrieval of image/chunk data from device.
@@ -5004,7 +5191,7 @@ Constants that can be used with various function calls
     or disk.
   - May throw GenICam::GenericException or other derived exception.
 
- @see 
+ @see
   - Arena::IBuffer
   - Arena::IImage
   - Arena::IChunkData
@@ -5022,7 +5209,7 @@ Constants that can be used with various function calls
   - Default: 10
   - Number of internal buffers to use in the acquisition engine
 
- @return 
+ @return
   - none
 
  <B> StartStream </B> causes the device to begin streaming image/chunk
@@ -5063,13 +5250,13 @@ Constants that can be used with various function calls
  	// because these features are locked out while streaming
  	{
  		GenApi::INodeMap* pNodeMap = pDevice-&gt;GetNodeMap();
- 		
+
  		GenApi::CIntegerPtr pWidth = pNodeMap-&gt;GetNode("Width");
  		pWidth-&gt;SetValue(pWidth-&gt;GetMax());
- 		
+
  		GenApi::CIntegerPtr pHeight = pNodeMap-&gt;GetNode("Height");
  		pHeight-&gt;SetValue(pHeight-&gt;GetMax());
- 		
+
  		pDevice-&gt;StartStream();
  	}
  \endcode
@@ -5102,16 +5289,16 @@ Constants that can be used with various function calls
  	// setting the buffer handling mode to 'NewestOnly' before starting the stream
  	{
  		GenApi::INodeMap* pStreamNodeMap = pDevice-&gt;GetTLStreamNodeMap();
- 		
+
  		GenApi::CEnumerationPtr pStreamBufferHandlingMode = pStreamNodeMap-&gt;GetNode("StreamBufferHandlingMode");
  		GenApi::CEnumEntryPtr pNewestOnly = pStreamBufferHandlingMode-&gt;GetNode("NewestOnly");
  		pStreamBufferHandlingMode-&gt;SetIntValue(pNewOnly-&gt;GetValue());
- 		
+
  		pDevice-&gt;StartStream()
  	}
  \endcode
 
- @warning 
+ @warning
   - Stream must already be configured prior to call.
   - Updates write access to certain nodes.
   - May only be called once per stream without stopping.
@@ -5119,7 +5306,7 @@ Constants that can be used with various function calls
   - May throw GenICam::GenericException or other derived exception.
   - Minimum number of buffers is 1.
 
- @see 
+ @see
   - Arena::IBuffer
   - Arena::IImage
   - Arena::IChunkData
@@ -5147,7 +5334,7 @@ Constants that can be used with various function calls
  operation times out more than 3 times, the device will be flagged as
  not connected.
 
- @see 
+ @see
   - Arena::ISystem::CreateDevice
 
 </member>
@@ -5167,7 +5354,7 @@ Constants that can be used with various function calls
   - _UndefinedAlgorithm
     - Description: Object not yet initialized
 
- @see 
+ @see
   - Arena::ImageFactory::Create
 
 </member>
@@ -5189,7 +5376,7 @@ Constants that can be used with various function calls
     - Value: 2
     - Description: Big endian
 
- @see 
+ @see
   - Arena::IImage::GetPixelEndianness
 
 </member>
@@ -5220,7 +5407,7 @@ Constants that can be used with various function calls
 	  - Value: 0x1002
 	  - Description: Compressed image data extended with chunk data
 
- @see 
+ @see
   - Arena::IBuffer::GetPayloadType
   - Arena::IImage::GetPayloadType
   - Arena::IChunkData::GetPayloadType
@@ -5247,35 +5434,35 @@ Constants that can be used with various function calls
  Member 'polarity' contains the trigger edge polarity (0: falling edge, 1: rising edge)
  Member 'timestamp' contains the timestamp for the trigger event
  Member 'gvspBlockId' contains the corresponding GVSP BlockId in which the trigger event was received
- 
- This struct is returned from Arena::IDevice::GetNextEvsTriggerEvent
- 
- @see 
-  - Arena::IDevice::GetNextEvsTriggerEvent
+
+ This struct is returned from Arena::IDevice::EvsRawTriggerEvent
+
+ @see
+  - Arena::IDevice::EvsRawTriggerEvent
 
 </member>
         <member name="T:Arena.EvsRawDecodedEvent">
  @struct EvsRawDecodedEvent
 
- This structure represents one EVT 3.0 event in a event camera buffer in the RawDecoded format 
+ This structure represents one EVT 3.0 event in a event camera buffer in the RawDecoded format
 
  Member 'x' contains the x-ccordinate for the event
  Member 'y' contains the y-ccordinate for the event
  Member 'p' contains the polarity for the event
  Member 't' contains the timestamp for the event
- 
+
 
 </member>
         <member name="T:Arena.LucidXYTPPixel">
  @struct LucidXYTPPixel
 
- This structure represents one EVT 3.0 event in a event camera buffer in the XYTPFrame format 
+ This structure represents one EVT 3.0 event in a event camera buffer in the XYTPFrame format
 
  Member 'x' contains the x pixel coordinate of the CD event
  Member 'y' contains the y pixel coordinate of the CD event
  Member 't' contains the timestamp of the CD event
  Member 'p' contains the polarity of the event
- 
+
 
 </member>
         <member name="M:Arena.IImage.Dispose">
@@ -7328,6 +7515,112 @@ Constants that can be used with various function calls
  in the GigE Vision discovery acknowledgement.
 
 </member>
+        <member name="M:ArenaNET.Arena.GetVersion">
+            <summary>
+Get version
+</summary>
+            <returns>Build version</returns>
+        </member>
+        <member name="M:ArenaNET.Arena.GetBitsPerPixel(System.UInt64)">
+            <summary>
+Gets bits per pixel
+</summary>
+            <param name="pixelFormat">Pixel format of an image</param>
+            <returns>Number of bits per pixel</returns>
+        </member>
+        <member name="M:ArenaNET.Arena.CalculateMaximumNumberOfBuffers(System.UInt32)">
+            <summary>
+Calculates the number of buffers it would take to fill 80% of
+the available memory.
+</summary>
+            <param name="payloadSize">Payload size of an image</param>
+            <returns>Maximum number of buffers</returns>
+        </member>
+        <member name="M:ArenaNET.Arena.CalculateCRC32(System.Byte[])">
+            <summary>
+Calculates a CRC value (cyclical redundancy check) on a 
+dataset. This is used to check whether the dataset has been sent
+in its entirety.
+</summary>
+            <param name="data">An array of the data to calculate the CRC</param>
+        </member>
+        <member name="M:ArenaNET.Arena.CloseSystem(ArenaNET.ISystem)">
+            <summary>
+Cleans up the system (ISystem) and deinitializes the
+Arena SDK, deallocating all memory.
+</summary>
+            <param name="system">The system object</param>
+        </member>
+        <member name="M:ArenaNET.Arena.OpenSystem">
+            <summary>
+Initializes the Arena SDK and retrieves the system
+object(ISystem). The system must be closed, or memory will leak.
+</summary>
+            <returns>The system object</returns>
+        </member>
+        <member name="M:ArenaNET.Arena.Finalize">
+            <summary>
+A finalizor.
+</summary>
+        </member>
+        <member name="M:ArenaNET.Arena.Dispose">
+            <summary>
+A destructor.
+</summary>
+        </member>
+        <member name="T:ArenaNET.Arena">
+            <summary>
+Static Arena class provides functionality not associated to any
+specific instance including opening and closing the system, 
+calculating CRCs and build version
+</summary>
+        </member>
+        <member name="M:ArenaNET.FeatureStream.Select(System.String)">
+            <summary>
+Adds a single streamable feature to the list of selected features to
+stream. If called for the first time, also sets an internal 'select-all'
+flag to false.
+</summary>
+            <param name="featureName">Name of the feature to select</param>
+        </member>
+        <member name="M:ArenaNET.FeatureStream.Write(System.String)">
+            <summary>
+Stream all selected features from a node map (INodeMap) to a file.
+</summary>
+            <param name="fileName">Name of the file to stream to</param>
+        </member>
+        <member name="M:ArenaNET.FeatureStream.Read(System.String)">
+            <summary>
+Streams all selected features from a file to a node map (INodeMap).
+</summary>
+            <param name="fileName">Name of the file to stream from</param>
+        </member>
+        <member name="M:ArenaNET.FeatureStream.Finalize">
+            <summary>
+A finalizer.
+</summary>
+        </member>
+        <member name="M:ArenaNET.FeatureStream.Dispose">
+            <summary>
+A destructor.
+</summary>
+        </member>
+        <member name="M:ArenaNET.FeatureStream.#ctor(ArenaNET.INodeMap)">
+            <summary>
+Constructs a feature stream object with a device's node map (INodeMap).
+The node map cannot be changed later; construct additional feature stream
+objects to stream to/from more node maps.
+</summary>
+            <param name="nodeMap">A node map</param>
+        </member>
+        <member name="T:ArenaNET.FeatureStream">
+            <summary>
+A FeatureStream object allows a device to stream features to and
+from files, sharing values amongst one another.Features can be either
+written from the device's node map (INodeMap) to a file or read
+from a file to the node map.
+</summary>
+        </member>
         <member name="P:ArenaNET.IDevice.TLInterfaceNodeMap">
             <summary>
 GenTL transport layer interface node map
@@ -7438,124 +7731,6 @@ Whether or not the device is connected
         <member name="T:ArenaNET.IDevice">
             <summary>
 An interface to a device object
-</summary>
-        </member>
-        <member name="M:ArenaNET.FeatureStream.Select(System.String)">
-            <summary>
-Adds a single streamable feature to the list of selected features to
-stream. If called for the first time, also sets an internal 'select-all'
-flag to false.
-</summary>
-            <param name="featureName">Name of the feature to select</param>
-        </member>
-        <member name="M:ArenaNET.FeatureStream.Write(System.String)">
-            <summary>
-Stream all selected features from a node map (INodeMap) to a file.
-</summary>
-            <param name="fileName">Name of the file to stream to</param>
-        </member>
-        <member name="M:ArenaNET.FeatureStream.Read(System.String)">
-            <summary>
-Streams all selected features from a file to a node map (INodeMap).
-</summary>
-            <param name="fileName">Name of the file to stream from</param>
-        </member>
-        <member name="M:ArenaNET.FeatureStream.Finalize">
-            <summary>
-A finalizer.
-</summary>
-        </member>
-        <member name="M:ArenaNET.FeatureStream.Dispose">
-            <summary>
-A destructor.
-</summary>
-        </member>
-        <member name="M:ArenaNET.FeatureStream.#ctor(ArenaNET.INodeMap)">
-            <summary>
-Constructs a feature stream object with a device's node map (INodeMap).
-The node map cannot be changed later; construct additional feature stream
-objects to stream to/from more node maps.
-</summary>
-            <param name="nodeMap">A node map</param>
-        </member>
-        <member name="T:ArenaNET.FeatureStream">
-            <summary>
-A FeatureStream object allows a device to stream features to and
-from files, sharing values amongst one another.Features can be either
-written from the device's node map (INodeMap) to a file or read
-from a file to the node map.
-</summary>
-        </member>
-        <member name="M:ArenaNET.Socket.ReceiveImages">
-            <summary>
-Receives multiple images from clients.
-</summary>
-            <returns>List of received images</returns>
-        </member>
-        <member name="M:ArenaNET.Socket.ReceiveImage">
-            <summary>
-Receives an image from clients.
-</summary>
-            <returns>image received</returns>
-        </member>
-        <member name="M:ArenaNET.Socket.ReceiveMessage">
-            <summary>
-Receives and handles text data from clients.
-</summary>
-            <returns>Received message as a string</returns>
-        </member>
-        <member name="M:ArenaNET.Socket.CloseListener">
-            <summary>
-Closes the listening socket and frees resources.
-</summary>
-        </member>
-        <member name="M:ArenaNET.Socket.OpenListener(System.UInt16)">
-            <summary>
-Initializes a listening socket for receiving data.
-</summary>
-            <param name="port">Port number to bind the listening socket</param>
-        </member>
-        <member name="M:ArenaNET.Socket.SendImage(ArenaNET.IImage)">
-            <summary>
-Sends an image to the configured destination.
-</summary>
-            <param name="image">The image object to be sent.</param>
-        </member>
-        <member name="M:ArenaNET.Socket.SendCommand(System.String)">
-            <summary>
-Sends a command message to the configured destination.
-</summary>
-            <param name="message">The command message to be sent as a string.</param>
-        </member>
-        <member name="M:ArenaNET.Socket.AddDestination(System.UInt16)">
-            <summary>
-Configures the destination address and port for sending messages.
-</summary>
-            <param name="port">Port number of the destination</param>
-        </member>
-        <member name="M:ArenaNET.Socket.CloseSender">
-            <summary>
-Closes the sending socket and releases any allocated resources.
-</summary>
-        </member>
-        <member name="M:ArenaNET.Socket.OpenSender">
-            <summary>
-Initializes the sending socket.
-</summary>
-        </member>
-        <member name="M:ArenaNET.Socket.Finalize">
-            <summary>
-A finalizer.
-</summary>
-        </member>
-        <member name="M:ArenaNET.Socket.Dispose">
-            <summary>
-A destructor.
-</summary>
-        </member>
-        <member name="T:ArenaNET.Socket">
-            <summary>
-Provides functionality for socket communication, handling both sending and receiving of data and images.
 </summary>
         </member>
         <member name="P:ArenaNET.IDeviceInfo.DeviceVersion">
@@ -7731,211 +7906,6 @@ Updates the internal list of devices (and their interfaces).
             <summary>
 The system is the entry point to the Arena SDK. It is retrieved and set up
 through the static Arena class.
-</summary>
-        </member>
-        <member name="M:ArenaNET.Arena.GetVersion">
-            <summary>
-Get version
-</summary>
-            <returns>Build version</returns>
-        </member>
-        <member name="M:ArenaNET.Arena.GetBitsPerPixel(System.UInt64)">
-            <summary>
-Gets bits per pixel
-</summary>
-            <param name="pixelFormat">Pixel format of an image</param>
-            <returns>Number of bits per pixel</returns>
-        </member>
-        <member name="M:ArenaNET.Arena.CalculateMaximumNumberOfBuffers(System.UInt32)">
-            <summary>
-Calculates the number of buffers it would take to fill 80% of
-the available memory.
-</summary>
-            <param name="payloadSize">Payload size of an image</param>
-            <returns>Maximum number of buffers</returns>
-        </member>
-        <member name="M:ArenaNET.Arena.CalculateCRC32(System.Byte[])">
-            <summary>
-Calculates a CRC value (cyclical redundancy check) on a 
-dataset. This is used to check whether the dataset has been sent
-in its entirety.
-</summary>
-            <param name="data">An array of the data to calculate the CRC</param>
-        </member>
-        <member name="M:ArenaNET.Arena.CloseSystem(ArenaNET.ISystem)">
-            <summary>
-Cleans up the system (ISystem) and deinitializes the
-Arena SDK, deallocating all memory.
-</summary>
-            <param name="system">The system object</param>
-        </member>
-        <member name="M:ArenaNET.Arena.OpenSystem">
-            <summary>
-Initializes the Arena SDK and retrieves the system
-object(ISystem). The system must be closed, or memory will leak.
-</summary>
-            <returns>The system object</returns>
-        </member>
-        <member name="M:ArenaNET.Arena.Finalize">
-            <summary>
-A finalizor.
-</summary>
-        </member>
-        <member name="M:ArenaNET.Arena.Dispose">
-            <summary>
-A destructor.
-</summary>
-        </member>
-        <member name="T:ArenaNET.Arena">
-            <summary>
-Static Arena class provides functionality not associated to any
-specific instance including opening and closing the system, 
-calculating CRCs and build version
-</summary>
-        </member>
-        <member name="P:ArenaNET.IInterfaceInfo.MacAddressStr">
-            <summary>
-MAC address of the interface, as a colon-separated string
-</summary>
-        </member>
-        <member name="P:ArenaNET.IInterfaceInfo.MacAddress">
-            <summary>
-MAC address of the interface, as an integer
-</summary>
-        </member>
-        <member name="P:ArenaNET.IInterfaceInfo.SubnetMaskStr">
-            <summary>
-Subnet mask of the interface, as a dot-separated string
-</summary>
-        </member>
-        <member name="P:ArenaNET.IInterfaceInfo.SubnetMask">
-            <summary>
-Subnet mask of the interface, as an integer
-</summary>
-        </member>
-        <member name="P:ArenaNET.IInterfaceInfo.IpAddressStr">
-            <summary>
-IP address of the interface, as a dot-separated string
-</summary>
-        </member>
-        <member name="P:ArenaNET.IInterfaceInfo.IpAddress">
-            <summary>
-IP address of the interface, as an integer
-</summary>
-        </member>
-        <member name="T:ArenaNET.IInterfaceInfo">
-            <summary>
-Interface information objects contain interface information used to 
-select which interface to enumerate devices on.
-</summary>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.SplitChannels(ArenaNET.IImage)">
-            <summary>
-Split a multi-channel image (IImage).
-</summary>
-            <param name="image">Image to split</param>
-            <returns>List of images (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.DeinterleaveChannelsShallow(System.Byte[],System.UInt64,ArenaNET.IImage)">
-            <summary>
-Scales an image (IImage).
-</summary>
-            <param name="image">Image to convert</param>
-            <param name="data">Image data</param>
-            <param name="len">Image length</param>
-            <returns>Deinterleaved image (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.DecompressImage(ArenaNET.ICompressedImage)">
-            <summary>
-Decompresses a compressed image (ICompressedImage).
-</summary>
-            <param name="compressedImage">Compressed image to decompress</param>
-            <returns>Decompressed image (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.DestroyCompressedImage(ArenaNET.ICompressedImage)">
-            <summary>
-Destroys a compressed image (ICompressedImage).
-</summary>
-            <param name="compressedImage">Compressed image to destroy (created, copied, and converted images must be destroyed; images retrieved from a device must not be destroyed).</param>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.Destroy(ArenaNET.IImage)">
-            <summary>
-Destroys an image (IImage).
-</summary>
-            <param name="image">Image to destroy (created, copied, and converted images must be destroyed; images retrieved from a device must not be destroyed).</param>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.Convert(ArenaNET.IImage,&lt;unknown type&gt;,ArenaNET.EBayerAlgorithm)">
-            <summary>
-Converts an image, using a particular bayer algorithm, if applicable.
-</summary>
-            <param name="image">Image to convert</param>
-            <param name="pixelFormat">Pixel format to convert to</param>
-            <param name="bayerAlgorithm">Algorithm to use for interpolating bayer data</param>
-            <returns>Converted image (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.Convert(ArenaNET.IImage,&lt;unknown type&gt;)">
-            <summary>
-Converts an image (IImage).
-</summary>
-            <param name="image">Image to convert</param>
-            <param name="pixelFormat">Pixel format to convert to</param>
-            <returns>Converted image (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.CopyCompressedImage(ArenaNET.ICompressedImage)">
-            <summary>
-Copies a compressed image (ICompressedImage).
-</summary>
-            <param name="compressedImage">Compressed image to copy</param>
-            <returns>Deep copy of the original (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.Copy(ArenaNET.IImage)">
-            <summary>
-Copies an image (IImage).
-</summary>
-            <param name="image">Image to copy</param>
-            <returns>Deep copy of the original (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.Shallow(System.Byte[],System.UInt32,System.UInt32,&lt;unknown type&gt;)">
-            <summary>
-Creates an image using user-memory (IImage).
-</summary>
-            <param name="data">Image data</param>
-            <param name="width">Image width</param>
-            <param name="height">Image height</param>
-            <param name="pixelFormat">Image pixel format</param>
-            <returns>An image from user-memory (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.CreateCompressedImage(System.Byte[],&lt;unknown type&gt;)">
-            <summary>
-Creates a compressed image (ICompressedImage).
-</summary>
-            <param name="data">Compressed image data</param>
-            <param name="pixelFormat">Image pixel format</param>
-            <returns>A created compressed image (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.Create(System.Byte[],System.UInt32,System.UInt32,&lt;unknown type&gt;)">
-            <summary>
-Creates an image (IImage).
-</summary>
-            <param name="data">Image data</param>
-            <param name="width">Image width</param>
-            <param name="height">Image height</param>
-            <param name="pixelFormat">Image pixel format</param>
-            <returns>A created image (must be destroyed)</returns>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.Finalize">
-            <summary>
-A finalizer.
-</summary>
-        </member>
-        <member name="M:ArenaNET.ImageFactory.Dispose">
-            <summary>
-A destructor.
-</summary>
-        </member>
-        <member name="T:ArenaNET.ImageFactory">
-            <summary>
-Static image factory for creating, copying, and converting images.
 </summary>
         </member>
         <member name="M:ArenaNET.ICompressedImage.AsChunkData">
@@ -8144,6 +8114,42 @@ Pointer to unmanaged image data
 A buffer object, retrieved from a device
 </summary>
         </member>
+        <member name="P:ArenaNET.IInterfaceInfo.MacAddressStr">
+            <summary>
+MAC address of the interface, as a colon-separated string
+</summary>
+        </member>
+        <member name="P:ArenaNET.IInterfaceInfo.MacAddress">
+            <summary>
+MAC address of the interface, as an integer
+</summary>
+        </member>
+        <member name="P:ArenaNET.IInterfaceInfo.SubnetMaskStr">
+            <summary>
+Subnet mask of the interface, as a dot-separated string
+</summary>
+        </member>
+        <member name="P:ArenaNET.IInterfaceInfo.SubnetMask">
+            <summary>
+Subnet mask of the interface, as an integer
+</summary>
+        </member>
+        <member name="P:ArenaNET.IInterfaceInfo.IpAddressStr">
+            <summary>
+IP address of the interface, as a dot-separated string
+</summary>
+        </member>
+        <member name="P:ArenaNET.IInterfaceInfo.IpAddress">
+            <summary>
+IP address of the interface, as an integer
+</summary>
+        </member>
+        <member name="T:ArenaNET.IInterfaceInfo">
+            <summary>
+Interface information objects contain interface information used to 
+select which interface to enumerate devices on.
+</summary>
+        </member>
         <member name="M:ArenaNET.IEnumeration.GetEntryByName(System.String)">
             <summary>
 Get an Entry node by its name
@@ -8179,6 +8185,31 @@ Node names of all child entry nodes
 Interface for enumeration nodes
 </summary>
         </member>
+        <member name="P:ArenaNET.IEnumEntry.IsSelfClearing">
+            <summary>
+Whether or not the node entry is self-clearing
+</summary>
+        </member>
+        <member name="P:ArenaNET.IEnumEntry.NumericValue">
+            <summary>
+Numeric value of the enum entry as known by the device
+</summary>
+        </member>
+        <member name="P:ArenaNET.IEnumEntry.Symbolic">
+            <summary>
+Name of the entry node
+</summary>
+        </member>
+        <member name="P:ArenaNET.IEnumEntry.IntValue">
+            <summary>
+Integer value of the enum entry as known by the device
+</summary>
+        </member>
+        <member name="T:ArenaNET.IEnumEntry">
+            <summary>
+Interface for enum entry nodes
+</summary>
+        </member>
         <member name="P:ArenaNET.ICategory.Features">
             <summary>
 Child nodes, returned as a list of nodes with an IValue interface
@@ -8187,6 +8218,21 @@ Child nodes, returned as a list of nodes with an IValue interface
         <member name="T:ArenaNET.ICategory">
             <summary>
 Interface for category nodes
+</summary>
+        </member>
+        <member name="P:ArenaNET.ICommand.IsDone">
+            <summary>
+Whether or not the command node has completed execution
+</summary>
+        </member>
+        <member name="M:ArenaNET.ICommand.Execute">
+            <summary>
+Executes the command node
+</summary>
+        </member>
+        <member name="T:ArenaNET.ICommand">
+            <summary>
+Interface for command nodes
 </summary>
         </member>
         <member name="M:ArenaNET.IFloat.ImposeMax(System.Double)">
@@ -8349,87 +8395,6 @@ Value of the node
 Interface for string nodes
 </summary>
         </member>
-        <member name="P:ArenaNET.IBoolean.Value">
-            <summary>
-Value of the node
-</summary>
-        </member>
-        <member name="T:ArenaNET.IBoolean">
-            <summary>
-Interface for boolean nodes
-</summary>
-        </member>
-        <member name="M:ArenaNET.INodeMap.Execute(System.String)">
-            <summary>
-Executes a command node.
-</summary>
-            <param name="nodeName">Name of the node</param>
-        </member>
-        <member name="M:ArenaNET.INodeMap.Unlock">
-            <summary>
-Unlocks the node map
-</summary>
-        </member>
-        <member name="M:ArenaNET.INodeMap.TryLock">
-            <summary>
-Tries to lock the node map
-</summary>
-            <returns>True on success; false on failure</returns>
-        </member>
-        <member name="M:ArenaNET.INodeMap.Lock">
-            <summary>
-Locks the node map
-</summary>
-        </member>
-        <member name="M:ArenaNET.INodeMap.Poll(System.Int64)">
-            <summary>
-Polls the node map
-</summary>
-            <param name="elapsedTime">The time that has passed since the last time the node map has been polled (in milliseconds)</param>
-        </member>
-        <member name="P:ArenaNET.INodeMap.DeviceName">
-            <summary>
-Name of the device
-</summary>
-        </member>
-        <member name="M:ArenaNET.INodeMap.InvalidateNodes">
-            <summary>
-Invalidates all nodes from the node map
-</summary>
-        </member>
-        <member name="M:ArenaNET.INodeMap.GetNode(System.String)">
-            <summary>
-Retrieves a feature by its name
-</summary>
-            <param name="name">Name of the feature</param>
-            <returns>Node</returns>
-        </member>
-        <member name="M:ArenaNET.INodeMap.GetNodes">
-            <summary>
-Retrieves a list of nodes
-</summary>
-            <returns>List of nodes</returns>
-        </member>
-        <member name="T:ArenaNET.INodeMap">
-            <summary>
-The node maps of a device contain contain its nodes/features
-</summary>
-        </member>
-        <member name="P:ArenaNET.ICommand.IsDone">
-            <summary>
-Whether or not the command node has completed execution
-</summary>
-        </member>
-        <member name="M:ArenaNET.ICommand.Execute">
-            <summary>
-Executes the command node
-</summary>
-        </member>
-        <member name="T:ArenaNET.ICommand">
-            <summary>
-Interface for command nodes
-</summary>
-        </member>
         <member name="P:ArenaNET.IRegister.Address">
             <summary>
 Address of the register data
@@ -8450,43 +8415,14 @@ Register data
 Interface for register nodes
 </summary>
         </member>
-        <member name="M:ArenaNET.ISelector.GetSelectingFeatures">
-            <summary />
-            <returns />
-        </member>
-        <member name="M:ArenaNET.ISelector.GetSelectedFeatures">
-            <summary />
-            <returns />
-        </member>
-        <member name="P:ArenaNET.ISelector.IsSelector">
-            <summary />
-        </member>
-        <member name="T:ArenaNET.ISelector">
-            <summary />
-        </member>
-        <member name="P:ArenaNET.IEnumEntry.IsSelfClearing">
+        <member name="P:ArenaNET.IBoolean.Value">
             <summary>
-Whether or not the node entry is self-clearing
+Value of the node
 </summary>
         </member>
-        <member name="P:ArenaNET.IEnumEntry.NumericValue">
+        <member name="T:ArenaNET.IBoolean">
             <summary>
-Numeric value of the enum entry as known by the device
-</summary>
-        </member>
-        <member name="P:ArenaNET.IEnumEntry.Symbolic">
-            <summary>
-Name of the entry node
-</summary>
-        </member>
-        <member name="P:ArenaNET.IEnumEntry.IntValue">
-            <summary>
-Integer value of the enum entry as known by the device
-</summary>
-        </member>
-        <member name="T:ArenaNET.IEnumEntry">
-            <summary>
-Interface for enum entry nodes
+Interface for boolean nodes
 </summary>
         </member>
         <member name="P:ArenaNET.IValue.IgnoreCache">
@@ -8530,6 +8466,20 @@ This feature under a generic node interface
             <summary>
 Interface that provides a generic method of getting and settings node values of different types
 </summary>
+        </member>
+        <member name="M:ArenaNET.ISelector.GetSelectingFeatures">
+            <summary />
+            <returns />
+        </member>
+        <member name="M:ArenaNET.ISelector.GetSelectedFeatures">
+            <summary />
+            <returns />
+        </member>
+        <member name="P:ArenaNET.ISelector.IsSelector">
+            <summary />
+        </member>
+        <member name="T:ArenaNET.ISelector">
+            <summary />
         </member>
         <member name="P:ArenaNET.INode.IsFeature">
             <summary>
@@ -8688,6 +8638,62 @@ Name of the feature
 Generic node object; houses properties and methods available to all nodes
 </summary>
         </member>
+        <member name="M:ArenaNET.INodeMap.Execute(System.String)">
+            <summary>
+Executes a command node.
+</summary>
+            <param name="nodeName">Name of the node</param>
+        </member>
+        <member name="M:ArenaNET.INodeMap.Unlock">
+            <summary>
+Unlocks the node map
+</summary>
+        </member>
+        <member name="M:ArenaNET.INodeMap.TryLock">
+            <summary>
+Tries to lock the node map
+</summary>
+            <returns>True on success; false on failure</returns>
+        </member>
+        <member name="M:ArenaNET.INodeMap.Lock">
+            <summary>
+Locks the node map
+</summary>
+        </member>
+        <member name="M:ArenaNET.INodeMap.Poll(System.Int64)">
+            <summary>
+Polls the node map
+</summary>
+            <param name="elapsedTime">The time that has passed since the last time the node map has been polled (in milliseconds)</param>
+        </member>
+        <member name="P:ArenaNET.INodeMap.DeviceName">
+            <summary>
+Name of the device
+</summary>
+        </member>
+        <member name="M:ArenaNET.INodeMap.InvalidateNodes">
+            <summary>
+Invalidates all nodes from the node map
+</summary>
+        </member>
+        <member name="M:ArenaNET.INodeMap.GetNode(System.String)">
+            <summary>
+Retrieves a feature by its name
+</summary>
+            <param name="name">Name of the feature</param>
+            <returns>Node</returns>
+        </member>
+        <member name="M:ArenaNET.INodeMap.GetNodes">
+            <summary>
+Retrieves a list of nodes
+</summary>
+            <returns>List of nodes</returns>
+        </member>
+        <member name="T:ArenaNET.INodeMap">
+            <summary>
+The node maps of a device contain contain its nodes/features
+</summary>
+        </member>
         <member name="P:ArenaNET.IBase.IsWritable">
             <summary>
 is node writable
@@ -8717,23 +8723,17 @@ Base node object
         <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.ImageFactory.SelectBitsAndScale(ArenaNET.IImage,System.UInt64,System.Double)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.ISystem.RegisterDeviceDisconnectCallback(ArenaNET.IDevice,ArenaNET.ISystem.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.ISystem.DeregisterDeviceDisconnectCallback(ArenaNET.ISystem.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.IDevice.RegisterImageCallback(ArenaNET.IDevice.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.IDevice.RegisterImageCallback(ArenaNET.IDevice.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:ArenaNET.ISystem.RegisterDeviceDisconnectCallback(ArenaNET.IDevice,ArenaNET.ISystem.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:ArenaNET.ISystem.DeregisterDeviceDisconnectCallback(ArenaNET.ISystem.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.IDevice.RegisterImageCallback(ArenaNET.IDevice.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.ISystem.RegisterDeviceDisconnectCallback(ArenaNET.IDevice,ArenaNET.ISystem.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.ISystem.DeregisterDeviceDisconnectCallback(ArenaNET.ISystem.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.IDevice.RegisterImageCallback(ArenaNET.IDevice.del)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
-        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'T:Arena.DeviceInfo' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:Arena.DeviceInfo.#ctor(Arena.DeviceInfo!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:Arena.DeviceInfo.op_Assign(Arena.DeviceInfo)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
@@ -8762,5 +8762,11 @@ Base node object
         <!-- 'M:Arena.ExecuteNode(GenApi_3_3_LUCID.INodeMap*,GenICam_3_3_LUCID.gcstring!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:Arena.IChunkData.GetChunk(GenICam_3_3_LUCID.gcstring)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
         <!-- 'M:Arena.ImageFactory.SplitChannels(Arena.IImage*)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.ImageFactory.SelectBitsAndScale(ArenaNET.IImage,System.UInt64,System.Double)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
+        <!-- 'M:ArenaNET.INode.GetProperty(System.String,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)' 멤버에 대한 잘못된 형식의 XML 문서 주석을 삭제합니다.-->
     </members>
 </doc>
