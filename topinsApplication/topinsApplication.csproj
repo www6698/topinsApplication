@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latestmajor</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\topinslogo.png" />
+    <None Remove="images\topinslogobg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.5" />
+    <PackageReference Include="System.IO.Ports" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\utilities\camera\lucid\ArenaNET\ArenaNET\ArenaCs.vcxproj" />
+    <ProjectReference Include="..\..\..\libraries\utilities\camera\lucid\SaveNET\SaveNET\SaveNET.vcxproj" />
+    <ProjectReference Include="..\..\..\libraries\ux\tpToolbox\tpToolbox\tpToolbox.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="common\action\" />
+    <Folder Include="common\utilities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\topinslogo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\topinslogobg.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="design\contentcontrol\tpOSDTool - Copy.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

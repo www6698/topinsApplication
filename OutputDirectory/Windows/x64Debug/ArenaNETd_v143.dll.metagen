@@ -1,0 +1,1146 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly ArenaNETd_v143, Version=1.0.*, Culture=고정 언어(고정 국가): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class ArenaNET.GenericException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Exception
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class ArenaNET.BadAllocException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :ArenaNET.GenericException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ArenaNET.InvalidArgumentException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :ArenaNET.GenericException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ArenaNET.OutOfRangeException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :ArenaNET.GenericException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ArenaNET.PropertyException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :ArenaNET.GenericException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ArenaNET.RuntimeException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :ArenaNET.GenericException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ArenaNET.LogicalErrorException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :ArenaNET.GenericException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ArenaNET.AccessException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :ArenaNET.GenericException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ArenaNET.TimeoutException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :ArenaNET.GenericException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ArenaNET.DynamicCastException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :ArenaNET.GenericException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ArenaNET.Consts: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    UInt64 INF = 18446744073709551615 : Public, Static, Literal, HasDefault
+Class ArenaNET.Arena: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  Interfaces:
+    System.IDisposable
+  Methods:
+    OpenSystem(): PrivateScope, Public, Static, HideBySig
+    CloseSystem(ISystem): PrivateScope, Public, Static, HideBySig
+    CalculateCRC32(Byte[]): PrivateScope, Public, Static, HideBySig
+    CalculateMaximumNumberOfBuffers(UInt32): PrivateScope, Public, Static, HideBySig
+    GetBitsPerPixel(UInt64): PrivateScope, Public, Static, HideBySig
+    GetVersion(): PrivateScope, Public, Static, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Interface ArenaNET.ISystem: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    ArenaNET.INodeMap TLSystemNodeMap 'get ' : 
+    System.Collections.Generic.List`1[ArenaNET.IInterfaceInfo] Interfaces 'get ' : 
+    System.Collections.Generic.List`1[ArenaNET.IDeviceInfo] Devices 'get ' : 
+  Methods:
+    UpdateDevices(IInterfaceInfo, UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UpdateDevices(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Devices(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Interfaces(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    AddUnicastDiscoveryDevice(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveUnicastDiscoveryDevice(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    CreateDevice(IDeviceInfo): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DestroyDevice(IDevice): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_TLSystemNodeMap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetTLInterfaceNodeMap(IDeviceInfo): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ForceIp(UInt64, UInt64, UInt64, UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RegisterDeviceDisconnectCallback(IDevice, del): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeregisterDeviceDisconnectCallback(del): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeregisterAllDeviceDisconnectCallbacks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class ArenaNET.ISystem+del: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(IDevice): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(IDevice, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Struct ArenaNET.EAccessMode: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EAccessMode NI = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.EAccessMode NA = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.EAccessMode WO = 2 : Public, Static, Literal, HasDefault
+    ArenaNET.EAccessMode RO = 3 : Public, Static, Literal, HasDefault
+    ArenaNET.EAccessMode RW = 4 : Public, Static, Literal, HasDefault
+    ArenaNET.EAccessMode Unknown = 5 : Public, Static, Literal, HasDefault
+Struct ArenaNET.ENameSpace: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.ENameSpace Custom = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.ENameSpace Standard = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.ENameSpace Unknown = 2 : Public, Static, Literal, HasDefault
+Struct ArenaNET.EVisibility: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EVisibility Beginner = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.EVisibility Expert = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.EVisibility Guru = 2 : Public, Static, Literal, HasDefault
+    ArenaNET.EVisibility Invisible = 3 : Public, Static, Literal, HasDefault
+    ArenaNET.EVisibility Unknown = 4 : Public, Static, Literal, HasDefault
+Struct ArenaNET.EYesNo: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EYesNo Yes = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.EYesNo No = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.EYesNo Unknown = 2 : Public, Static, Literal, HasDefault
+Struct ArenaNET.ECachingMode: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.ECachingMode NoCache = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.ECachingMode WriteThrough = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.ECachingMode WriteAround = 2 : Public, Static, Literal, HasDefault
+    ArenaNET.ECachingMode Unknown = 3 : Public, Static, Literal, HasDefault
+Struct ArenaNET.ELinkType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.ELinkType ctParentNodes = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.ELinkType ctReadingChildren = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.ELinkType ctWritingChildren = 2 : Public, Static, Literal, HasDefault
+    ArenaNET.ELinkType ctInvalidatingChildren = 3 : Public, Static, Literal, HasDefault
+    ArenaNET.ELinkType ctDependingNodes = 4 : Public, Static, Literal, HasDefault
+    ArenaNET.ELinkType ctTerminalNodes = 5 : Public, Static, Literal, HasDefault
+    ArenaNET.ELinkType Unknown = 6 : Public, Static, Literal, HasDefault
+Struct ArenaNET.EInterfaceType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EInterfaceType intfIValue = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfIBase = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfIInteger = 2 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfIBoolean = 3 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfICommand = 4 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfIFloat = 5 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfIString = 6 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfIRegister = 7 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfICategory = 8 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfIEnumeration = 9 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfIEnumEntry = 10 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType intfIPort = 11 : Public, Static, Literal, HasDefault
+    ArenaNET.EInterfaceType Unknown = 12 : Public, Static, Literal, HasDefault
+Struct ArenaNET.EIncMode: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EIncMode noIncrement = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.EIncMode fixedIncrement = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.EIncMode listIncrement = 2 : Public, Static, Literal, HasDefault
+    ArenaNET.EIncMode Unknown = 3 : Public, Static, Literal, HasDefault
+Struct ArenaNET.ERepresentation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.ERepresentation Linear = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.ERepresentation Logarithmic = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.ERepresentation Boolean = 2 : Public, Static, Literal, HasDefault
+    ArenaNET.ERepresentation PureNumber = 3 : Public, Static, Literal, HasDefault
+    ArenaNET.ERepresentation HexNumber = 4 : Public, Static, Literal, HasDefault
+    ArenaNET.ERepresentation IPV4Address = 5 : Public, Static, Literal, HasDefault
+    ArenaNET.ERepresentation MACAddress = 6 : Public, Static, Literal, HasDefault
+    ArenaNET.ERepresentation Unknown = 7 : Public, Static, Literal, HasDefault
+Struct ArenaNET.EDisplayNotation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EDisplayNotation fnAutomatic = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.EDisplayNotation fnFixed = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.EDisplayNotation fnScientific = 2 : Public, Static, Literal, HasDefault
+    ArenaNET.EDisplayNotation Unknown = 3 : Public, Static, Literal, HasDefault
+Struct ArenaNET.EBufferPayloadType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EBufferPayloadType Image = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.EBufferPayloadType ImageExtendedChunk = 16385 : Public, Static, Literal, HasDefault
+    ArenaNET.EBufferPayloadType ChunkData = 4 : Public, Static, Literal, HasDefault
+    ArenaNET.EBufferPayloadType CompressedImage = 1001 : Public, Static, Literal, HasDefault
+    ArenaNET.EBufferPayloadType CompressedImageExtendedChunk = 1002 : Public, Static, Literal, HasDefault
+    ArenaNET.EBufferPayloadType Unknown = 1003 : Public, Static, Literal, HasDefault
+Struct ArenaNET.EPfncFormat: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    UInt64 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EPfncFormat Mono1p = 16842807 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono2p = 16908344 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono4p = 17039417 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono8 = 17301505 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono8s = 17301506 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono10 = 17825795 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono10p = 17432646 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono12 = 17825797 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono12p = 17563719 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono14 = 17825829 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono16 = 17825799 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerBG8 = 17301515 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerBG10 = 17825807 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerBG10p = 17432658 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerBG12 = 17825811 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerBG12p = 17563731 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerBG16 = 17825841 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGB8 = 17301514 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGB10 = 17825806 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGB10p = 17432660 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGB12 = 17825810 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGB12p = 17563733 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGB16 = 17825840 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGR8 = 17301512 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGR10 = 17825804 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGR10p = 17432662 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGR12 = 17825808 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGR12p = 17563735 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGR16 = 17825838 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerRG8 = 17301513 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerRG10 = 17825805 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerRG10p = 17432664 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerRG12 = 17825809 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerRG12p = 17563737 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerRG16 = 17825839 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGBa8 = 35651606 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGBa10 = 37748831 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGBa10p = 36175968 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGBa12 = 37748833 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGBa12p = 36700258 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGBa14 = 37748835 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGBa16 = 37748836 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB8 = 35127316 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB8_Planar = 35127329 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB10 = 36700184 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB10_Planar = 36700194 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB10p = 35520604 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB10p32 = 35651613 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB12 = 36700186 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB12_Planar = 36700195 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB12p = 35913821 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB14 = 36700254 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB16 = 36700211 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB16_Planar = 36700196 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB565p = 34603061 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGRa8 = 35651607 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGRa10 = 37748812 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGRa10p = 36175949 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGRa12 = 37748814 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGRa12p = 36700239 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGRa14 = 37748816 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGRa16 = 37748817 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGR8 = 35127317 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGR10 = 36700185 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGR10p = 35520584 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGR12 = 36700187 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGR12p = 35913801 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGR14 = 36700234 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGR16 = 36700235 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGR565p = 34603062 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat R8 = 17301705 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat R10 = 17432778 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat R12 = 17563851 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat R16 = 17825996 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat G8 = 17301709 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat G10 = 17432782 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat G12 = 17563855 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat G16 = 17826000 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat B8 = 17301713 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat B10 = 17432786 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat B12 = 17563859 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat B16 = 17826004 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC8 = 35127474 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC8_Planar = 35127475 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC10p = 35520731 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC10p_Planar = 35520732 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC12p = 35913950 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC12p_Planar = 35913951 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC16 = 36700345 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC16_Planar = 36700346 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC32f = 39846080 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC32f_Planar = 39846081 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC8 = 34603188 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC8_Planar = 34603189 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC10p = 34865392 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC10p_Planar = 34865393 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC12p = 35127538 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC12p_Planar = 35127539 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC16 = 35651771 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC16_Planar = 35651772 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC32f = 37748930 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_AC32f_Planar = 37748931 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_A8 = 17301679 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_A10p = 17432789 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_A12p = 17563864 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_A16 = 17825974 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_A32f = 18874557 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_B8 = 17301680 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_B10p = 17432790 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_B12p = 17563865 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_B16 = 17825975 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_B32f = 18874558 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_C8 = 17301681 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_C10p = 17432791 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_C12p = 17563866 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_C16 = 17825976 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_C32f = 18874559 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Confidence1 = 17301700 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Confidence1p = 16842949 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Confidence8 = 17301702 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Confidence16 = 17825991 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Confidence32f = 18874568 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorBGRG8 = 34603174 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorBGRG10 = 35651753 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorBGRG10p = 34865322 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorBGRG12 = 35651757 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorBGRG12p = 35127470 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorRGBG8 = 34603173 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorRGBG10 = 35651751 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorRGBG10p = 34865320 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorRGBG12 = 35651755 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BiColorRGBG12p = 35127468 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WBWG8 = 17301607 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WBWG10 = 17825896 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WBWG10p = 17432681 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WBWG12 = 17825898 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WBWG12p = 17563755 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WBWG14 = 17825900 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WBWG16 = 17825901 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWB8 = 17301614 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWB10 = 17825903 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWB10p = 17432688 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWB12 = 17825905 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWB12p = 17563762 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWB14 = 17825907 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWB16 = 17825908 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWR8 = 17301621 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWR10 = 17825910 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWR10p = 17432695 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWR12 = 17825912 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWR12p = 17563769 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWR14 = 17825914 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WGWR16 = 17825915 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WRWG8 = 17301628 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WRWG10 = 17825917 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WRWG10p = 17432702 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WRWG12 = 17825919 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WRWG12p = 17563776 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WRWG14 = 17825921 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat SCF1WRWG16 = 17825922 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr8 = 35127387 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr8_CbYCr = 35127354 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr10_CbYCr = 36700291 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr10p_CbYCr = 35520644 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr12_CbYCr = 36700293 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr12p_CbYCr = 35913862 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr411_8 = 34340954 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr411_8_CbYYCrYY = 34340924 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_8 = 34603067 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_8_CbYCrY = 34603075 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_10 = 35651685 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_10_CbYCrY = 35651737 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_10p = 34865287 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_10p_CbYCrY = 34865306 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_12 = 35651686 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_12_CbYCrY = 35651739 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_12p = 35127432 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_12p_CbYCrY = 35127452 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_8_CbYCr = 35127357 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_10_CbYCr = 36700297 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_10p_CbYCr = 35520650 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_12_CbYCr = 36700299 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_12p_CbYCr = 35913868 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_411_8_CbYYCrYY = 34340927 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_8 = 34603070 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_8_CbYCrY = 34603076 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_10 = 35651725 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_10_CbYCrY = 35651741 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_10p = 34865294 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_10p_CbYCrY = 34865310 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_12 = 35651727 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_12_CbYCrY = 35651743 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_12p = 35127440 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr601_422_12p_CbYCrY = 35127456 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_8_CbYCr = 35127360 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_10_CbYCr = 36700305 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_10p_CbYCr = 35520658 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_12_CbYCr = 36700307 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_12p_CbYCr = 35913876 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_411_8_CbYYCrYY = 34340930 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_8 = 34603073 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_8_CbYCrY = 34603077 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_10 = 35651733 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_10_CbYCrY = 35651745 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_10p = 34865302 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_10p_CbYCrY = 34865314 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_12 = 35651735 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_12_CbYCrY = 35651747 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_12p = 35127448 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr709_422_12p_CbYCrY = 35127460 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_8_CbYCr = 35127540 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_10_CbYCr = 36700405 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_10p_CbYCr = 35520758 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_12_CbYCr = 36700407 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_12p_CbYCr = 35913976 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_411_8_CbYYCrYY = 34341113 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_8 = 34603258 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_8_CbYCrY = 34603259 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_10 = 35651836 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_10_CbYCrY = 35651837 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_10p = 34865406 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_10p_CbYCrY = 34865407 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_12 = 35651840 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_12_CbYCrY = 35651841 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_12p = 35127554 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr2020_422_12p_CbYCrY = 35127555 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YUV8_UYV = 35127328 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YUV411_8_UYYVYY = 34340894 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YUV422_8 = 34603058 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YUV422_8_UYVY = 34603039 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono10Packed = 17563652 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono12Packed = 17563654 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerBG10Packed = 17563689 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerBG12Packed = 17563693 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGB10Packed = 17563688 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGB12Packed = 17563692 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGR10Packed = 17563686 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGR12Packed = 17563690 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerRG10Packed = 17563687 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerRG12Packed = 17563691 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB10V1Packed = 35651612 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB12V1Packed = 35913780 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizeMono8 = 2164785153 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizeMono12p = 2165047367 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizeMono12Packed = 2165047302 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizeMono12 = 2165309448 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizeMono16 = 2165309447 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAngles_0d_45d_90d_135d_Mono8 = 2183135247 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAngles_0d_45d_90d_135d_Mono12p = 2184183839 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAngles_0d_45d_90d_135d_Mono16 = 2185232431 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_Mono8 = 2182611007 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_Mono12p = 2183397455 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_Mono16 = 2184183903 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_S3_Mono8 = 2183135343 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_S3_Mono12p = 2184183935 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_S3_Mono16 = 2185232527 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAolp_Mono8 = 2164785375 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAolp_Mono12p = 2165047535 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolp_Mono8 = 2164785343 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolp_Mono12p = 2165047503 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolp_Mono16 = 2853218986 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAolp_Mono8 = 2182086815 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAolp_Mono12p = 2182611119 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABCY16s = 2185233408 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABC16s = 2184184833 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_C16s = 2165310466 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABCY16 = 2185233411 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAngles_0d_45d_90d_135d_BayerRG8 = 2183135759 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAngles_0d_45d_90d_135d_BayerRG12p = 2184184351 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_BayerRG8 = 2182611519 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_BayerRG12p = 2183397967 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_S3_BayerRG8 = 2183135855 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_S3_BayerRG12p = 2184184447 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAolp_BayerRG8 = 2164785887 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAolp_BayerRG12p = 2165048047 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolp_BayerRG8 = 2164785855 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolp_BayerRG12p = 2165048015 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolp_BayerRG16 = 3138436027 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAolp_BayerRG8 = 2182087327 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAolp_BayerRG12p = 2182611631 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Mono24 = 2165835008 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGR24 = 2165835009 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerRG24 = 2165835010 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerGB24 = 2165835011 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BayerBG24 = 2165835012 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat RGB24 = 2185757957 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat BGR24 = 2185757958 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_16_CbYCrY = 2183136519 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr422_24_CbYCrY = 2184185096 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr411_16_CbYYCrYY = 2182612233 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr411_24_CbYYCrYY = 2183398666 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAngle_Mono8 = 2182086911 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAngle_Mono12p = 2182611215 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAngle_Mono16 = 2183135519 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAngle_BayerRG8 = 2182087423 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAngle_BayerRG12p = 2182611727 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAngle_BayerRG16 = 2183136031 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_C16Y8 = 2182611972 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_CY16 = 2183136261 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QOI_Mono8 = 2164787712 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QOI_BayerGR8 = 2164787968 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QOI_BayerRG8 = 2164787969 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QOI_BayerGB8 = 2164787970 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QOI_BayerBG8 = 2164787971 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QOI_RGB8 = 2182613505 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QOI_BGR8 = 2182613506 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QOI_YCbCr8 = 2182613507 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QOI_YCbCr8_CbYCr = 2182613508 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono8 = 2164789249 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono10 = 2165313539 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono10p = 2164920390 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono10Packed = 2165051396 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono12 = 2165313541 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono12p = 2165051463 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono12Packed = 2165051398 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono16 = 2165313543 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG8 = 2164789257 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG10 = 2165313549 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG10p = 2164920408 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG10Packed = 2165051431 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG12 = 2165313553 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG12p = 2165051481 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG12Packed = 2165051435 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG16 = 2165313583 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR8 = 2164789256 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR10 = 2165313548 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR10p = 2164920406 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR10Packed = 2165051430 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR12 = 2165313552 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR12p = 2165051479 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR12Packed = 2165051434 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR16 = 2165313582 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG8 = 2164789259 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG10 = 2165313551 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG10p = 2164920402 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG10Packed = 2165051433 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG12 = 2165313555 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG12p = 2165051475 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG12Packed = 2165051437 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG16 = 2165313585 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB8 = 2164789258 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB10 = 2165313550 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB10p = 2164920404 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB10Packed = 2165051432 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB12 = 2165313554 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB12p = 2165051477 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB12Packed = 2165051436 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB16 = 2165313584 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono8 = 2164797441 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono10 = 2165321731 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono10p = 2164928582 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono10Packed = 2165059588 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono12 = 2165321733 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono12p = 2165059655 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono12Packed = 2165059590 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono16 = 2165321735 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG8 = 2164797449 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG10 = 2165321741 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG10p = 2164928600 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG10Packed = 2165059623 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG12 = 2165321745 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG12p = 2165059673 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG12Packed = 2165059627 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG16 = 2165321775 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR8 = 2164797448 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR10 = 2165321740 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR10p = 2164928598 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR10Packed = 2165059622 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR12 = 2165321744 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR12p = 2165059671 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR12Packed = 2165059626 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR16 = 2165321774 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG8 = 2164797451 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG10 = 2165321743 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG10p = 2164928594 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG10Packed = 2165059625 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG12 = 2165321747 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG12p = 2165059667 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG12Packed = 2165059629 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG16 = 2165321777 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB8 = 2164797450 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB10 = 2165321742 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB10p = 2164928596 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB10Packed = 2165059624 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB12 = 2165321746 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB12p = 2165059669 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB12Packed = 2165059628 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB16 = 2165321776 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAngles_0d_45d_90d_135d_Mono12 = 2185232415 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_S3_Mono12 = 2185232511 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAolp_Mono12 = 2165309679 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolp_Mono12 = 2165309647 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAolp_Mono12 = 2183135407 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_ABCY8 = 2183136259 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat Coord3D_CY8 = 2182087684 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAngles_0d_45d_90d_135d_BayerRG12 = 2185232927 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedStokes_S0_S1_S2_S3_BayerRG12 = 2185233023 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedAolp_BayerRG12 = 2165310191 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolp_BayerRG12 = 2165310159 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat PolarizedDolpAolp_BayerRG12 = 2183135919 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr16_CbYCr = 2184185095 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat YCbCr24_CbYCr = 2185757960 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono8_2ch = 2165313537 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono10_2ch = 2166362115 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono12_2ch = 2166362117 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualMono16_2ch = 2166362119 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG8_2ch = 2165313545 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG10_2ch = 2166362125 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG12_2ch = 2166362129 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerRG16_2ch = 2166362159 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR8_2ch = 2165313544 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR10_2ch = 2166362124 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR12_2ch = 2166362128 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGR16_2ch = 2166362158 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG8_2ch = 2165313547 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG10_2ch = 2166362127 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG12_2ch = 2166362131 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerBG16_2ch = 2166362161 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB8_2ch = 2165313546 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB10_2ch = 2166362126 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB12_2ch = 2166362130 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat DualBayerGB16_2ch = 2166362160 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono8_4ch = 2166370305 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono10_4ch = 2168467459 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono12_4ch = 2168467461 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadMono16_4ch = 2168467463 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG8_4ch = 2166370313 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG10_4ch = 2168467469 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG12_4ch = 2168467473 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerRG16_4ch = 2168467503 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR8_4ch = 2166370312 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR10_4ch = 2168467468 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR12_4ch = 2168467472 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGR16_4ch = 2168467502 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG8_4ch = 2166370315 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG10_4ch = 2168467471 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG12_4ch = 2168467475 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerBG16_4ch = 2168467505 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB8_4ch = 2166370314 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB10_4ch = 2168467470 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB12_4ch = 2168467474 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat QuadBayerGB16_4ch = 2168467504 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat LucidXYTP128f = 2189444438 : Public, Static, Literal, HasDefault
+    ArenaNET.EPfncFormat InvalidPixelFormat = 0 : Public, Static, Literal, HasDefault
+Struct ArenaNET.EPixelEndianness: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EPixelEndianness Unknown = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.EPixelEndianness Little = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.EPixelEndianness Big = 2 : Public, Static, Literal, HasDefault
+Struct ArenaNET.EBayerAlgorithm: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    ArenaNET.EBayerAlgorithm DirectionalInterpolation = 0 : Public, Static, Literal, HasDefault
+    ArenaNET.EBayerAlgorithm AdaptiveHomogeneityDirected = 1 : Public, Static, Literal, HasDefault
+    ArenaNET.EBayerAlgorithm _UndefinedAlgorithm = 2 : Public, Static, Literal, HasDefault
+Interface ArenaNET.IBase: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Boolean IsWritable 'get ' : 
+    Boolean IsReadable 'get ' : 
+    Boolean IsAvailable 'get ' : 
+    ArenaNET.EAccessMode AccessMode 'get ' : 
+  Methods:
+    get_AccessMode(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsAvailable(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsReadable(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsWritable(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface ArenaNET.IBuffer: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Boolean DataIsLargerThanBuffer 'get ' : 
+    Boolean IsIncomplete 'get ' : 
+    Boolean IsCompressedImage 'get ' : 
+    Boolean HasChunkData 'get ' : 
+    Boolean HasImageData 'get ' : 
+    ArenaNET.EBufferPayloadType PayloadType 'get ' : 
+    UInt64 FrameId 'get ' : 
+    UInt32 SizeOfBuffer 'get ' : 
+    UInt32 PayloadSize 'get ' : 
+    UInt32 SizeFilled 'get ' : 
+    Byte[] DataArray 'get ' : 
+    IntPtr NativePtr 'get ' : 
+  Methods:
+    get_NativePtr(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DataArray(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SizeFilled(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PayloadSize(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SizeOfBuffer(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FrameId(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PayloadType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HasImageData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HasChunkData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsCompressedImage(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    AsImage(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AsChunkData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AsCompressedImage(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_IsIncomplete(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DataIsLargerThanBuffer(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    VerifyCRC(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface ArenaNET.IImage: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IBuffer
+  Properties:
+    System.Drawing.Bitmap Bitmap 'get ' : 
+    UInt64 TimestampNs 'get ' : 
+    UInt64 Timestamp 'get ' : 
+    ArenaNET.EPixelEndianness PixelEndianness 'get ' : 
+    UInt32 BitsPerPixel 'get ' : 
+    ArenaNET.EPfncFormat PixelFormat 'get ' : 
+    UInt32 PaddingY 'get ' : 
+    UInt32 PaddingX 'get ' : 
+    UInt32 OffsetY 'get ' : 
+    UInt32 OffsetX 'get ' : 
+    UInt32 Height 'get ' : 
+    UInt32 Width 'get ' : 
+  Methods:
+    get_Width(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Height(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_OffsetX(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_OffsetY(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PaddingX(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PaddingY(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PixelFormat(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_BitsPerPixel(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PixelEndianness(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Timestamp(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TimestampNs(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    AsChunkData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Bitmap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface ArenaNET.IChunkData: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IBuffer
+  Methods:
+    GetChunk(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AsImage(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface ArenaNET.ICompressedImage: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IBuffer
+  Properties:
+    UInt64 TimestampNs 'get ' : 
+    UInt64 Timestamp 'get ' : 
+    ArenaNET.EPfncFormat PixelFormat 'get ' : 
+  Methods:
+    get_PixelFormat(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Timestamp(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TimestampNs(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    AsChunkData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface ArenaNET.INode: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IBase
+  Properties:
+    Boolean IsFeature 'get ' : 
+    ArenaNET.EInterfaceType PrincipalInterfaceType 'get ' : 
+    Boolean IsDeprecated 'get ' : 
+    System.String DocuUrl 'get ' : 
+    ArenaNET.INode CastAlias 'get ' : 
+    ArenaNET.INode Alias 'get ' : 
+    System.Collections.Generic.List`1[System.String] PropertyNames 'get ' : 
+    Boolean IsStreamable 'get ' : 
+    System.String EventId 'get ' : 
+    ArenaNET.INodeMap NodeMap 'get ' : 
+    System.Collections.Generic.List`1[ArenaNET.INode] Parents 'get ' : 
+    ArenaNET.ELinkType ChildrenLinkType 'get set' : 
+    System.Collections.Generic.List`1[ArenaNET.INode] Children 'get ' : 
+    System.String DeviceName 'get ' : 
+    System.String DisplayName 'get ' : 
+    System.String Description 'get ' : 
+    System.String ToolTip 'get ' : 
+    Int64 PollingTime 'get ' : 
+    ArenaNET.ECachingMode CachingMode 'get ' : 
+    ArenaNET.EYesNo IsAccessModeCachable 'get ' : 
+    Boolean IsCachable 'get ' : 
+    ArenaNET.EVisibility Visibility 'get ' : 
+    ArenaNET.ENameSpace NameSpace 'get ' : 
+    System.String FullName 'get ' : 
+    System.String Name 'get ' : 
+  Methods:
+    get_Name(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FullName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_NameSpace(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Visibility(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    InvalidateNode(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RegisterCallback(del): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeregisterCallback(IntPtr): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_IsCachable(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsAccessModeCachable(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_CachingMode(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PollingTime(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ToolTip(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Description(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DisplayName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DeviceName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Children(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ChildrenLinkType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ChildrenLinkType(ELinkType): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Parents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_NodeMap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_EventId(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsStreamable(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PropertyNames(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetProperty(String, String* IsImplicitlyDereferenced, String* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ImposeAccessMode(EAccessMode): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ImposeVisibility(EVisibility): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Alias(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_CastAlias(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DocuUrl(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsDeprecated(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PrincipalInterfaceType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsFeature(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class ArenaNET.INode+del: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(INode): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(INode, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Interface ArenaNET.ISelector: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Boolean IsSelector 'get ' : 
+  Methods:
+    get_IsSelector(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetSelectedFeatures(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetSelectingFeatures(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface ArenaNET.IValue: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    Boolean IgnoreCache 'get set' : 
+    Boolean VerifyGet 'get set' : 
+    Boolean VerifySet 'get set' : 
+    Boolean IsValueCacheValid 'get ' : 
+    ArenaNET.INode Node 'get ' : 
+  Methods:
+    get_Node(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    ToString(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    FromString(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_IsValueCacheValid(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_VerifySet(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_VerifySet(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_VerifyGet(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_VerifyGet(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IgnoreCache(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IgnoreCache(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface ArenaNET.IBoolean: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IValue
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    Boolean Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface ArenaNET.IRegister: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IValue
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    Int64 Address 'get ' : 
+    Int64 Length 'get ' : 
+    Byte[] DataArray 'get set' : 
+  Methods:
+    get_DataArray(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_DataArray(Byte[]): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Length(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Address(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface ArenaNET.IString: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IValue
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    Int64 MaxLength 'get ' : 
+    System.String Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_MaxLength(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface ArenaNET.IInteger: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IValue
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    System.String Unit 'get ' : 
+    ArenaNET.ERepresentation Representation 'get ' : 
+    Int64 Inc  'get ' : 
+    ArenaNET.EIncMode IncMode 'get ' : 
+    Int64 Max  'get ' : 
+    Int64 Min  'get ' : 
+    Int64 Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(Int64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Min(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Max(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IncMode(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Inc(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetListOfValidValues(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetListOfValidValues(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Representation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Unit(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    ImposeMin(Int64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ImposeMax(Int64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface ArenaNET.IFloat: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IValue
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    Int64 DisplayPrecision 'get ' : 
+    ArenaNET.EDisplayNotation DisplayNotation 'get ' : 
+    System.String Unit 'get ' : 
+    ArenaNET.ERepresentation Representation 'get ' : 
+    Double Inc 'get ' : 
+    ArenaNET.EIncMode IncMode 'get ' : 
+    Boolean HasInc 'get ' : 
+    Double Max 'get ' : 
+    Double Min 'get ' : 
+    Double Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Min(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Max(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HasInc(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IncMode(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Inc(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetListOfValidValues(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetListOfValidValues(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Representation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Unit(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DisplayNotation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DisplayPrecision(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    ImposeMin(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ImposeMax(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface ArenaNET.ICommand: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IValue
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    Boolean IsDone 'get ' : 
+  Methods:
+    Execute(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface ArenaNET.ICategory: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IValue
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    System.Collections.Generic.List`1[ArenaNET.IValue] Features 'get ' : 
+  Methods:
+    get_Features(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface ArenaNET.IEnumEntry: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IValue
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    Boolean IsSelfClearing 'get ' : 
+    Double NumericValue 'get ' : 
+    System.String Symbolic 'get ' : 
+    Int64 IntValue 'get ' : 
+  Methods:
+    get_IntValue(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Symbolic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_NumericValue(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsSelfClearing(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface ArenaNET.IEnumeration: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IValue
+    ArenaNET.INode
+    ArenaNET.IBase
+  Properties:
+    ArenaNET.IEnumEntry Entry 'get set' : 
+    System.String Symbolic 'get set' : 
+    Int64 IntValue 'get set' : 
+    System.Collections.Generic.List`1[ArenaNET.IEnumEntry] Entries 'get ' : 
+    System.Collections.Generic.List`1[System.String] Symbolics 'get ' : 
+  Methods:
+    get_Symbolics(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Entries(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IntValue(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IntValue(Int64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Symbolic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Symbolic(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Entry(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Entry(IEnumEntry): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetEntryByName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface ArenaNET.IPort: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    ArenaNET.IBase
+  Methods:
+    Read(Object IsByValue, UInt64, UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Write(Object IsByValue IsConst IsConst, UInt64, UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface ArenaNET.IDevice: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    ArenaNET.INodeMap TLInterfaceNodeMap 'get ' : 
+    ArenaNET.INodeMap TLStreamNodeMap 'get ' : 
+    ArenaNET.INodeMap TLDeviceNodeMap 'get ' : 
+    ArenaNET.INodeMap NodeMap 'get ' : 
+    Boolean IsConnected 'get ' : 
+  Methods:
+    get_IsConnected(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    StartStream(UInt32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    StartStream(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    StopStream(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetImage(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetCompressedImage(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetBuffer(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RequeueBuffer(IBuffer): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    InitializeEvents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeinitializeEvents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    WaitOnEvent(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    WaitForNextLeader(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ResetWaitForNextLeader(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RegisterImageCallback(del): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeregisterImageCallback(del): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeregisterAllImageCallbacks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_NodeMap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TLDeviceNodeMap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TLStreamNodeMap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TLInterfaceNodeMap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class ArenaNET.IDevice+del: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(IImage): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(IImage, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Interface ArenaNET.INodeMap: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String DeviceName 'get ' : 
+  Methods:
+    GetNodes(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetNode(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    InvalidateNodes(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_DeviceName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    Poll(Int64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Lock(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    TryLock(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Unlock(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Execute(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface ArenaNET.IDeviceInfo: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String DeviceVersion 'get ' : 
+    Boolean IsLLAConfigurationEnabled 'get ' : 
+    Boolean IsPersistentIpConfigurationEnabled 'get ' : 
+    Boolean IsDHCPConfigurationEnabled 'get ' : 
+    System.String UserDefinedName 'get ' : 
+    System.String MacAddressStr 'get ' : 
+    Int64 MacAddress 'get ' : 
+    System.String DefaultGatewayStr 'get ' : 
+    Int32 DefaultGateway 'get ' : 
+    System.String SubnetMaskStr 'get ' : 
+    Int32 SubnetMask 'get ' : 
+    System.String IpAddressStr 'get ' : 
+    Int32 IpAddress 'get ' : 
+    System.String SerialNumber 'get ' : 
+    System.String VendorName 'get ' : 
+    System.String ModelName 'get ' : 
+  Methods:
+    get_ModelName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_VendorName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SerialNumber(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IpAddress(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IpAddressStr(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SubnetMask(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SubnetMaskStr(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DefaultGateway(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DefaultGatewayStr(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_MacAddress(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_MacAddressStr(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_UserDefinedName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsDHCPConfigurationEnabled(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsPersistentIpConfigurationEnabled(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsLLAConfigurationEnabled(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DeviceVersion(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class ArenaNET.FeatureStream: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(ArenaNET.INodeMap): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    Read(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Write(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Select(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class ArenaNET.ImageFactory: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  Interfaces:
+    System.IDisposable
+  Methods:
+    Create(Byte[], UInt32, UInt32, EPfncFormat): PrivateScope, Public, Static, HideBySig
+    CreateEmpty(UInt32, UInt32, EPfncFormat): PrivateScope, Public, Static, HideBySig
+    CreateCompressedImage(Byte[], EPfncFormat): PrivateScope, Public, Static, HideBySig
+    Shallow(Byte[], UInt32, UInt32, EPfncFormat): PrivateScope, Public, Static, HideBySig
+    Copy(IImage): PrivateScope, Public, Static, HideBySig
+    CopyCompressedImage(ICompressedImage): PrivateScope, Public, Static, HideBySig
+    Convert(IImage, EPfncFormat, EBayerAlgorithm): PrivateScope, Public, Static, HideBySig
+    Convert(IImage, EPfncFormat): PrivateScope, Public, Static, HideBySig
+    ProcessSoftwareLUT(IImage, Byte[], UInt64): PrivateScope, Public, Static, HideBySig
+    Destroy(IImage): PrivateScope, Public, Static, HideBySig
+    DestroyCompressedImage(ICompressedImage): PrivateScope, Public, Static, HideBySig
+    SelectBitsAndScale(IImage, UInt64, Double): PrivateScope, Public, Static, HideBySig
+    SelectBits(IImage, UInt64, Int32): PrivateScope, Public, Static, HideBySig
+    DecompressImage(ICompressedImage): PrivateScope, Public, Static, HideBySig
+    DeinterleaveChannelsShallow(Byte[], UInt64, IImage): PrivateScope, Public, Static, HideBySig
+    DeinterleaveChannels(IImage): PrivateScope, Public, Static, HideBySig
+    DeinterleaveChannelsLen(IImage): PrivateScope, Public, Static, HideBySig
+    SplitChannels(IImage): PrivateScope, Public, Static, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Interface ArenaNET.IInterfaceInfo: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String MacAddressStr 'get ' : 
+    Int64 MacAddress 'get ' : 
+    System.String SubnetMaskStr 'get ' : 
+    Int32 SubnetMask 'get ' : 
+    System.String IpAddressStr 'get ' : 
+    Int32 IpAddress 'get ' : 
+  Methods:
+    get_IpAddress(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IpAddressStr(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SubnetMask(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SubnetMaskStr(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_MacAddress(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_MacAddressStr(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class ArenaNET.Socket: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Arena.Socket*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    OpenSender(): PrivateScope, Public, HideBySig
+    CloseSender(): PrivateScope, Public, HideBySig
+    AddDestination(UInt16): PrivateScope, Public, HideBySig
+    SendCommand(String): PrivateScope, Public, HideBySig
+    SendImage(IImage): PrivateScope, Public, HideBySig
+    OpenListener(UInt16): PrivateScope, Public, HideBySig
+    CloseListener(): PrivateScope, Public, HideBySig
+    ReceiveMessage(): PrivateScope, Public, HideBySig
+    ReceiveImage(): PrivateScope, Public, HideBySig
+    ReceiveImages(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig

@@ -1,0 +1,333 @@
+﻿<UserControl x:Class="topinsApplication.topinsToolBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:topinsApplication"
+             mc:Ignorable="d"
+             IsTabStop="False" FocusVisualStyle="{x:Null}"
+             Loaded="OnToolBarLoaded">
+    <UserControl.Resources>
+        <Storyboard x:Key="ShowToolBarAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Width)" From="0" To="200" Duration="0:0:0.5"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HideToolBarAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Width)" From="200" To="0" Duration="0:0:0.5"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="38*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="460" />
+            <ColumnDefinition Width="140" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" />
+            <RowDefinition Height="54" />
+            <RowDefinition Height="2" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,5,0,0">
+            <ToolBarTray Background="Transparent">
+                <ToolBar>
+                    <ToolBar.Resources>
+                        <ControlTemplate x:Key="CustomFocusStyle">
+                            <Border BorderBrush="Red" BorderThickness="1"/>
+                        </ControlTemplate>
+                    </ToolBar.Resources>
+
+                    <Button Width="38" Height="38" ToolTip="종료"
+                            Command="{Binding Source={x:Static local:tpWorkspace.Workspace}, Path=ShutDownApp}">
+                        <Path Data="{DynamicResource Logout}" Fill="#FFAD0000" Stretch="Uniform" />
+                    </Button>
+                    
+                    <Separator Background="#FF3D3D3D" Margin="6,2,3,2"/>
+                    
+                    <Button IsEnabled="{Binding IsConnect}"
+                            Command="{Binding Connect}" Width="38" Height="38" ToolTip="렌즈연결" Margin="3,0,3,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF107C41"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Path Data="{DynamicResource Connect}"
+                              Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}"
+                              Stretch="Uniform"/>
+                    </Button>
+                    <Button IsEnabled="{Binding IsDisconnect}"
+                            Command="{Binding Disconnect}"
+                            Width="38" Height="38" ToolTip="렌즈연결 종료" Margin="3,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FFBD404D"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Path Data="{DynamicResource Pause}"
+                              Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}"
+                              Stretch="Uniform"/>
+                    </Button>
+                    
+                    <Separator Background="#FF3D3D3D" Margin="6,2,6,2"/>
+                    <Separator Background="#FF3D3D3D" Margin="6,2,6,2"/>
+
+                    <Button Command="{Binding Source={x:Static local:tpWorkspace.Workspace}, Path=StartDialog}"
+                            CommandParameter="{x:Type local:tpCamerasMvvm}"
+                            Width="38" Height="38" ToolTip="카메라리스트" Margin="0,0,3,0">
+                        <Path Data="{DynamicResource Subscriptions}" Fill="#FF0E8BDB" Stretch="Uniform" />
+                    </Button>
+                    <Button Command="{Binding PlayStream}"
+                            Width="38" Height="38" ToolTip="Start" Margin="3,0,3,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF7EE07E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Path Data="{DynamicResource Start}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Stretch="Uniform"/>
+                    </Button>
+                    <Button Command="{Binding StopStream}"
+                            Width="38" Height="38" ToolTip="Pause" Margin="3,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FFAD0000"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Path Data="{DynamicResource Pause}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Stretch="Uniform"/>
+                    </Button>
+
+                    <ToggleButton IsEnabled="{Binding IsPip}"
+                                  Command="{Binding ShowPip}"
+                                  CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                  Width="38" Height="38" ToolTip="녹화" Margin="3,0,3,0">
+                        <ToggleButton.Style>
+                            <Style TargetType="ToggleButton">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF0E8BDB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ToggleButton.Style>
+
+                        <Path Data="{DynamicResource PIP}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Stretch="Uniform"/>
+                    </ToggleButton>
+                    <ToggleButton IsEnabled="{Binding IsMovePip}"
+                                  Command="{Binding MovePip}"
+                                  CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                  Width="38" Height="38" ToolTip="녹화" Margin="3,0,3,0">
+                        <ToggleButton.Style>
+                            <Style TargetType="ToggleButton">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF0E8BDB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ToggleButton.Style>
+
+                        <Path Data="{DynamicResource Exchange}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Stretch="Uniform"/>
+                    </ToggleButton>
+
+                    <Separator Background="#FF3D3D3D" Margin="6,2,6,2"/>
+
+                    <ToggleButton IsEnabled="{Binding IsRecord}"
+                                  Command="{Binding Record}"
+                                  CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                  Width="38" Height="38" ToolTip="녹화" Margin="0,0,3,0">
+                        <ToggleButton.Style>
+                            <Style TargetType="ToggleButton">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF0E8BDB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ToggleButton.Style>
+
+                        <Path Data="{DynamicResource Record}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Stretch="Uniform"/>
+                    </ToggleButton>
+                    <Button Command="{Binding Screen}"
+                            Width="38" Height="38" ToolTip="스크린샷" Margin="3,0,0,0" >
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF0E8BDB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        
+                        <Path Data="{DynamicResource Screen}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Stretch="Uniform"/>
+                    </Button>                    
+                    <Separator Background="#FF3D3D3D" Margin="6,2,6,2"/>
+                    <Button Command="{Binding Source={x:Static local:tpWorkspace.Workspace}, Path=FullScreen}" Width="38" Height="38" Margin="3,0,3,0" >
+                        <Path Data="{Binding FullScreenGeometry}" Fill="#FF0E8BDB" Stretch="Uniform" />
+                    </Button>
+                    <ToggleButton Visibility="{Binding IsPopupVisible}" IsChecked="{Binding IsPopupOpen, Mode=TwoWay}" Width="38" Height="38" ToolTip="렌즈 제어창 보기" Margin="3,0,3,0" >
+                        <Path Data="{DynamicResource PopupMenu}" Fill="#FF0E8BDB" Stretch="Uniform" />
+                    </ToggleButton>
+
+                    <Separator Background="#FF3D3D3D" Margin="6,2,6,2" Visibility="{Binding IsPopupVisible}"/>
+                    <Separator Background="#FF3D3D3D" Margin="6,2,6,2"/>
+
+                    <Button Command="{Binding Source={x:Static local:tpWorkspace.Workspace}, Path=StartDialog}" CommandParameter="{x:Type local:tpOptionsMvvm}" Width="38" Height="38" ToolTip="옵션" Margin="3,0,0,0" >
+                        <Path Data="{DynamicResource Option}" Fill="#FF999999" Stretch="Uniform" />
+                    </Button>
+                </ToolBar>
+                <!--<ToolBar IsEnabled="{Binding IsLenzEnabled}">-->
+                <ToolBar>
+                    <ToolBar.Resources>
+                        <ControlTemplate x:Key="CustomFocusStyle">
+                            <Border BorderBrush="Red" BorderThickness="1"/>
+                        </ControlTemplate>
+                    </ToolBar.Resources>
+
+                    <Button Command="{Binding Source={x:Static local:tpWorkspace.Workspace}, Path=StartWindow}" CommandParameter="{x:Type local:tpOSDToolMvvm}" Width="38" Height="38" ToolTip="OSD 설정" Margin="3,0,3,0" >
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF107C41"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Path Data="{DynamicResource OSDSetting}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Stretch="Uniform" />
+                    </Button>
+
+                    <!--<Button IsEnabled="{Binding IsPreset}"-->
+                    <Button Width="38" Height="38" ToolTip="프리셋 설정" Margin="3,0,3,0" Click="OpenPresetContextMenu">
+                        <!--Command="{Binding PresetTool}"-->
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF7EE07E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="SAVE Preset" Command="{Binding PresetTool}" CommandParameter="{x:Static local:tpCommandKeys.PRESETSAVE}"/>
+                                <MenuItem Header="LOAD Preset" Command="{Binding PresetTool}" CommandParameter="{x:Static local:tpCommandKeys.PRESETCALL}"/>
+                                <MenuItem Header="Clear Preset" Command="{Binding PresetTool}" CommandParameter="{x:Static local:tpCommandKeys.PRESETCLEAR}"/>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                        <Path Data="{DynamicResource CameraPresets}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Stretch="Uniform" />
+                    </Button>
+
+                    <Separator Background="#FF3D3D3D" Margin="6,2,6,2"/>
+
+                    <ToggleButton IsEnabled="{Binding IsFocus}"
+                                  Command="{Binding Focus}"
+                                  CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                  Width="38" Height="38" ToolTip="{Binding FocusToolTip, Mode=OneWay}" Margin="3,0,3,0">
+                        <!--Width="38" Height="38" ToolTip="{Binding FocusToolTip, Mode=OneWay}" Margin="3,0,3,0" IsThreeState="True">-->
+                        <ToggleButton.Style>
+                            <Style TargetType="ToggleButton">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF0E8BDB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ToggleButton.Style>
+                        
+                        <Path Data="{DynamicResource Focus}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Stretch="Uniform"/>
+                    </ToggleButton>
+                    <ToggleButton IsEnabled="{Binding IsIris}"
+                                  Command="{Binding Iris}"
+                                  CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}" 
+                                  ToolTip="{Binding IrisToolTip, Mode=OneWay}" Width="38" Height="38" Margin="3,0,3,0">
+                        <ToggleButton.Style>
+                            <Style TargetType="ToggleButton">
+                                <Setter Property="Tag" Value="{DynamicResource SystemButtonsMousePressedBackground}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Tag" Value="#FF0E8BDB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ToggleButton.Style>
+
+                        <Path Data="{DynamicResource Iris}" Fill="{Binding Tag, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Stretch="Uniform"/>
+                    </ToggleButton>
+                </ToolBar>
+                <ToolBar x:Name="PresetToolBar" Visibility="{Binding IsPreset, Mode=OneWay}" OverflowMode="Never">
+                    <ToolBar.Resources>
+                        <ControlTemplate x:Key="CustomFocusStyle">
+                            <Border BorderBrush="Red" BorderThickness="1"/>
+                        </ControlTemplate>
+                    </ToolBar.Resources>
+
+                    <!--<Label Content="Save" Width="48" Margin="3,0,3,0" Foreground="#FF999999" FontWeight="UltraBold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>-->
+                    <ComboBox ItemsSource="{Binding PresetID}" SelectedIndex="{Binding SelectedPresetID, Mode=TwoWay}" Margin="3,0,6,0" Width="180" Height="28" VerticalContentAlignment="Center"/>
+                    <Button Command="{Binding ExecutePreset}"  ToolTip="{Binding PresetToolTip}" Tag="{Binding PresetTag}" Width="38" Height="38" Margin="6,0,3,0">
+                        <Path Data="{Binding PresetGeometry}" Fill="#FFAD0000" Stretch="Uniform"/>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="1" VerticalAlignment="Center">
+            <TextBlock Text="{Binding RecordingTime}"
+                       Foreground="#FFBD404D"
+                       Typography.NumeralAlignment="Tabular"
+                       TextAlignment="Right" Margin="0,0,16,0"
+                       FontWeight="UltraBold"
+                       FontSize="24"
+                       HorizontalAlignment="Right"
+                       FontFamily="Impact"/>
+        </StackPanel>
+        <StackPanel Grid.Column="4" Grid.Row="1">
+            <TextBlock Typography.NumeralAlignment="Tabular" TextAlignment="Right" Margin="0,0,16,0" FontWeight="UltraBold" FontSize="44" HorizontalAlignment="Right" FontFamily="Impact" VerticalAlignment="Top">
+                <Run Text="{Binding Date}" Foreground="#FF4D4D4D" FontSize="32"/>
+                <Run Text=" "/>
+                <Run Text="{Binding Time}" Foreground="#FF999999"/>
+                <!--<Run Text="12345" Foreground="#FF999999"/>-->
+            </TextBlock>
+        </StackPanel>
+        <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="3" Source="pack://application:,,,/images/topinslogo.png" RenderOptions.BitmapScalingMode="NearestNeighbor" SnapsToDevicePixels="True" ToolTip="Customer" Stretch="Uniform" Margin="0,0,8,12" HorizontalAlignment="Right"></Image>
+    </Grid>
+</UserControl>

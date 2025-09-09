@@ -1,0 +1,88 @@
+﻿<Window x:Class="topinsApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:topinsApplication"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Width="1880" Height="950" MinWidth="1880" MinHeight="950"
+        Background="{DynamicResource HeaderBackground}" Foreground="{DynamicResource WindowForeground}" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" ResizeMode="NoResize" WindowState="Maximized">
+    <!--Width="1880" Height="950" MinWidth="1880" MinHeight="950" MaxWidth="{x:Static SystemParameters.MaximizedPrimaryScreenWidth}" MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}"-->
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome x:Name="chrome" ResizeBorderThickness="8" />
+    </WindowChrome.WindowChrome>
+
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Alt" Key="F4" Command="{Binding Path=PreventAltF4}" />
+    </Window.InputBindings>
+
+    <Grid>
+        <Grid.Style>
+            <Style TargetType="{x:Type Grid}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Value="Maximized">
+                        <Setter Property="Margin" Value="6,6,6,8" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="26"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="header">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding TitleHeight}"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Margin="8,4" HorizontalAlignment="Left" Orientation="Horizontal">
+                <local:topinsIcon Margin="4,0" Width="16" Height="16">
+                    <local:topinsIcon.Style>
+                        <Style TargetType="{x:Type UserControl}">
+                            <Setter Property="Foreground" Value="{DynamicResource IconBrush}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Value="False">
+                                    <Setter Property="Foreground" Value="{DynamicResource IconInactiveBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </local:topinsIcon.Style>
+                </local:topinsIcon>
+
+                <!--<ContentControl Content="{Binding Path=MenuMvvm}"/>-->
+
+                <Border Margin="14,2,0,2" CornerRadius="10">
+                    <TextBlock Style="{StaticResource CaptionStyle}" Text="{Binding Caption, Mode=OneWay}" VerticalAlignment="Center" Padding="6,2,7,2" FontWeight="Bold"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" WindowChrome.IsHitTestVisibleInChrome="True">
+                <!--<ComboBox Margin="0,0,8,0" Padding="7,0,0,0" WindowChrome.IsHitTestVisibleInChrome="True" DisplayMemberPath="Item1" ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme}" Height="18" />-->
+
+                <!--<Button Style="{StaticResource ToolsButton}" Command="{Binding StartWindow}" CommandParameter="{x:Type local:spToolsMvvm}" />-->
+                <!--<Button Style="{StaticResource LoginButton}" Command="{Binding StartWindow}" CommandParameter="{x:Type local:spLoginMvvm}" />-->
+
+                <Button Style="{StaticResource MinimizeButton}" Click="OnMinimizeClicked" IsEnabled="False"/>
+                <Button Style="{StaticResource MaximizeButton}" Click="OnMaximizeClicked" IsEnabled="False"/>
+                <Button Style="{StaticResource RestoredButton}" Click="OnRestoredClicked" IsEnabled="False"/>
+                <Button Style="{StaticResource ShutDownButton}" Click="OnShutDownClicked" />
+            </StackPanel>
+            
+            <StackPanel Grid.Row="2" Orientation="Vertical">
+                <ContentControl Content="{Binding Path=ToolBar}"/>
+            </StackPanel>
+        </Grid>
+
+        <DockPanel Grid.Row="1">
+            <ContentControl Content="{Binding Path=Content}"/>
+        </DockPanel>
+        <DockPanel Grid.Row="2">
+            <StatusBar Background="#FF424242"/>
+        </DockPanel>
+    </Grid>
+</Window>

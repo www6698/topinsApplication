@@ -1,0 +1,228 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly SaveNET, Version=0.0.*, Culture=고정 언어(고정 국가): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class SaveNET.ImageParams: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(UInt64, UInt64, UInt64): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(UInt64, UInt64, UInt64, UInt64): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(UInt64, UInt64, UInt64, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    UInt64 NumVertices 'get set' : 
+    UInt64 Stride 'get ' : 
+    UInt64 Size 'get ' : 
+    Boolean TopToBottom 'get set' : 
+    UInt64 BitsPerPixel 'get set' : 
+    UInt64 Height 'get set' : 
+    UInt64 Width 'get set' : 
+  Methods:
+    get_Width(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Width(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Height(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Height(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_BitsPerPixel(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_BitsPerPixel(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_TopToBottom(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_TopToBottom(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Size(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Stride(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_NumVertices(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_NumVertices(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class SaveNET.VideoParams: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(UInt64, UInt64): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(UInt64, UInt64, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Double FPS 'get set' : 
+    UInt64 Height 'get set' : 
+    UInt64 Width 'get set' : 
+  Methods:
+    get_Width(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Width(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Height(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Height(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_FPS(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_FPS(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct SaveNET.EFileFormat: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    SaveNET.EFileFormat Unknown = 0 : Public, Static, Literal, HasDefault
+    SaveNET.EFileFormat Raw = 1 : Public, Static, Literal, HasDefault
+    SaveNET.EFileFormat Jpeg = 2 : Public, Static, Literal, HasDefault
+    SaveNET.EFileFormat Png = 3 : Public, Static, Literal, HasDefault
+    SaveNET.EFileFormat Bmp = 4 : Public, Static, Literal, HasDefault
+    SaveNET.EFileFormat Tiff = 5 : Public, Static, Literal, HasDefault
+    SaveNET.EFileFormat Avi = 6 : Public, Static, Literal, HasDefault
+    SaveNET.EFileFormat Mov = 7 : Public, Static, Literal, HasDefault
+    SaveNET.EFileFormat Mp4 = 8 : Public, Static, Literal, HasDefault
+    SaveNET.EFileFormat Ply = 9 : Public, Static, Literal, HasDefault
+Struct SaveNET.ECountScope: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    SaveNET.ECountScope Local = 0 : Public, Static, Literal, HasDefault
+    SaveNET.ECountScope Path = 1 : Public, Static, Literal, HasDefault
+    SaveNET.ECountScope Global = 2 : Public, Static, Literal, HasDefault
+Struct SaveNET.EJpegSubsampling: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    SaveNET.EJpegSubsampling NoSubsampling = 0 : Public, Static, Literal, HasDefault
+    SaveNET.EJpegSubsampling Subsampling411 = 1 : Public, Static, Literal, HasDefault
+    SaveNET.EJpegSubsampling Subsampling420 = 2 : Public, Static, Literal, HasDefault
+    SaveNET.EJpegSubsampling Subsampling422 = 3 : Public, Static, Literal, HasDefault
+Struct SaveNET.ETiffCompression: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    SaveNET.ETiffCompression NoCompression = 0 : Public, Static, Literal, HasDefault
+    SaveNET.ETiffCompression Packbits = 1 : Public, Static, Literal, HasDefault
+    SaveNET.ETiffCompression Deflate = 2 : Public, Static, Literal, HasDefault
+    SaveNET.ETiffCompression AdobeDeflate = 3 : Public, Static, Literal, HasDefault
+    SaveNET.ETiffCompression Ccittfax3 = 4 : Public, Static, Literal, HasDefault
+    SaveNET.ETiffCompression Ccittfax4 = 5 : Public, Static, Literal, HasDefault
+    SaveNET.ETiffCompression Lzw = 6 : Public, Static, Literal, HasDefault
+    SaveNET.ETiffCompression JpegTiff = 7 : Public, Static, Literal, HasDefault
+    SaveNET.ETiffCompression Logluv = 8 : Public, Static, Literal, HasDefault
+Struct SaveNET.PfncFormat: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    SaveNET.PfncFormat RGB8 = 35127316 : Public, Static, Literal, HasDefault
+    SaveNET.PfncFormat BGR8 = 35127317 : Public, Static, Literal, HasDefault
+    SaveNET.PfncFormat InvalidPixelFormat = 0 : Public, Static, Literal, HasDefault
+Class SaveNET.ImageReader: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Byte[] DataArray 'get ' : 
+    SaveNET.ImageParams Params 'get ' : 
+  Methods:
+    get_Params(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_DataArray(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Load(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Load(String, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    LoadRawData(String, Byte[], UInt32): PrivateScope, Public, Static, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class SaveNET.ImageWriter: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(SaveNET.ImageParams): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(SaveNET.ImageParams, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    System.String Path 'get ' : 
+    SaveNET.ImageParams Params 'get set' : 
+    System.String Extension 'get set' : 
+  Methods:
+    get_Extension(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Extension(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Params(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Params(ImageParams): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Path(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    SetJpeg(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetJpeg(String, UInt32, Boolean(HasFieldMarshal), EJpegSubsampling, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetBmp(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetBmp(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetRaw(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetRaw(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetPly(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetPly(String, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Single, Single, Single, Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetPly(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetTiff(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetTiff(String, ETiffCompression, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetPng(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetPng(String, UInt32, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetFileNamePattern(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetFileNamePattern(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetFileNamePattern(Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetFileNamePattern(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekFileName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekFileName(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekFileName(Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetLastFileName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetLastFileName(Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekCount(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekCount(ECountScope): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetCount(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetCount(UInt64, ECountScope): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetTimestamp(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UpdateTag(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Save(Byte[], Byte[]): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Save(Byte[], Byte[], Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Save(Byte[]): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Save(Byte[], Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SaveRawData(String, Byte[], UInt32): PrivateScope, Public, Static, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class SaveNET.Save: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  Interfaces:
+    System.IDisposable
+  Methods:
+    GetVersion(): PrivateScope, Public, Static, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class SaveNET.VideoRecorder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(SaveNET.VideoParams): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(SaveNET.VideoParams, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    UInt64 PixelFormat 'get ' : 
+    System.String Path 'get ' : 
+    SaveNET.VideoParams Params 'get set' : 
+    System.String Extension 'get ' : 
+    System.String Codec 'get ' : 
+  Methods:
+    get_Codec(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Extension(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Params(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Params(VideoParams): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Path(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_PixelFormat(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    SetRaw(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetRawAviBGR8(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetRawMovRGB8(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetH264MovRGB8(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetH264MovBGR8(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetH264Mp4RGB8(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetH264Mp4BGR8(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetFileNamePattern(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetFileNamePattern(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetFileNamePattern(Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetFileNamePattern(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekFileName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekFileName(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekFileName(Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetLastFileName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetLastFileName(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetLastFileName(Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekCount(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PeekCount(ECountScope): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetCount(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetCount(UInt64, ECountScope): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetTimestamp(UInt64): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UpdateTag(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Open(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Close(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    AppendImage(Byte[]): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig

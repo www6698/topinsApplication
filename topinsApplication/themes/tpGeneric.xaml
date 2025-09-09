@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:topinsApplication">
+
+    <DataTemplate DataType="{x:Type local:topinsToolBarMvvm}">
+        <local:topinsToolBar/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type local:topinsContentMvvm}">
+        <local:topinsContent/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:tpToolBarExtendedMvvm}">
+        <local:tpToolBarExtended/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type local:topinsCamImageMvvm}">
+        <local:topinsCamImage/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type local:topinsControlPadMvvm}">
+        <local:topinsControlPad/>
+    </DataTemplate>
+
+    <Style x:Key="CaptionStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource ProjectNameForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource ProjectNameBackground}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource ProjectNameInactiveForeground}" />
+                <Setter Property="Background" Value="{DynamicResource ProjectNameInactiveBackground}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

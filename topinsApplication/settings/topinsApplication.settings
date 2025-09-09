@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tpioSetting xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/topinsApplication">
+	<IOGenerics>
+		<CameraVendor>defaultcp.cp</CameraVendor>
+		<RecordingTime>60000</RecordingTime>
+		<ScreenShotFolder>D:\backup\development\development\outsourcing\company\topins\solutions\topins\topinsApplication\topinsApplication\bin\Debug\net8.0-windows7.0\screenshot</ScreenShotFolder>
+		<StreamFolder>D:\backup\development\development\outsourcing\company\topins\solutions\topins\topinsApplication\topinsApplication\bin\Debug\net8.0-windows7.0\stream</StreamFolder>
+	</IOGenerics>
+	<IONetworks />
+	<IORSSerial>
+		<BaudRate>0</BaudRate>
+		<Parity>None</Parity>
+		<PortName i:nil="true" />
+		<StopBits>None</StopBits>
+	</IORSSerial>
+</tpioSetting>
