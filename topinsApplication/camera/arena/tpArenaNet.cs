@@ -70,6 +70,7 @@ public class tpArenaNet : IDisposable
             uint width = 1920;
             uint height = 1080;
 
+            // 기존 설정 저장
             __acquisitionModeInitial = (__device.NodeMap.GetNode("AcquisitionMode") as IEnumeration).Entry.Symbolic;
             __frameRateEnableInitial = (__device.NodeMap.GetNode("AcquisitionFrameRateEnable") as IBoolean).Value;
 
@@ -80,25 +81,75 @@ public class tpArenaNet : IDisposable
             __imageWidthInitial = (__device.NodeMap.GetNode("Width") as IInteger).Value;
             __imageHeightInitial = (__device.NodeMap.GetNode("Height") as IInteger).Value;
 
+            // 기본 설정
             (__device.NodeMap.GetNode("AcquisitionMode") as IEnumeration).FromString("Continuous");
-
             SetIntValue(__device.NodeMap, "Width", width);
             SetIntValue(__device.NodeMap, "Height", height);
-
             (__device.NodeMap.GetNode("AcquisitionFrameRateEnable") as IBoolean).Value = true;
-
             __fps = SetFloatValue(__device.NodeMap, "AcquisitionFrameRate", __fps);
+
+            // ========== 여기부터 추가 ==========
+
+            // 1. Multicast 설정 추가
+            try
+            {
+                // GigE Vision 관련 설정
+                if (__device.TLStreamNodeMap.GetNode("StreamMulticastEnable") is IBoolean multicastNode)
+                {
+                    multicastNode.Value = true;
+                }
+
+                // 전송 모드를 Multicast로 설정
+                if (__device.NodeMap.GetNode("GevSCPSPacketSize") is IInteger packetSizeNode)
+                {
+                    // Jumbo Frame 설정 (일반적으로 9000이 최대, 안전하게 8192 사용)
+                    packetSizeNode.Value = Math.Min(8192, packetSizeNode.Max);
+                }
+
+                // Inter-Packet Delay 설정 (패킷 간 지연 시간)
+                if (__device.NodeMap.GetNode("GevSCPD") is IInteger interPacketDelayNode)
+                {
+                    // 네트워크 상황에 따라 조정 (마이크로초 단위)
+                    interPacketDelayNode.Value = 1000; // 1ms
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Multicast 설정 실패 (계속 진행): {ex.Message}");
+            }
+
+            // 2. 버퍼 설정 개선
+            var streamAutoNegotiatePacketSizeNode = (IBoolean)__device.TLStreamNodeMap.GetNode("StreamAutoNegotiatePacketSize");
+            streamAutoNegotiatePacketSizeNode.Value = true;
+
+            var streamPacketResendEnableNode = (IBoolean)__device.TLStreamNodeMap.GetNode("StreamPacketResendEnable");
+            streamPacketResendEnableNode.Value = true;
+
+            // 3. 추가 스트림 버퍼 설정
+            try
+            {
+                // 버퍼 개수 증가 (프레임 드롭 방지)
+                if (__device.TLStreamNodeMap.GetNode("StreamBufferCountManual") is IInteger bufferCountNode)
+                {
+                    bufferCountNode.Value = Math.Min(10, bufferCountNode.Max); // 버퍼 10개 사용
+                }
+
+                // 버퍼 처리 모드 설정
+                if (__device.TLStreamNodeMap.GetNode("StreamBufferHandlingMode") is IEnumeration bufferModeNode)
+                {
+                    bufferModeNode.FromString("NewestOnly"); // 최신 프레임만 유지
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"버퍼 설정 실패 (계속 진행): {ex.Message}");
+            }
+
+            // ========== 추가 끝 ==========
 
 #if DEBUG && !FORDEBUG
             System.Diagnostics.Debug.WriteLine($"Information: \nwidth: {(__device.NodeMap.GetNode("Width") as IInteger).Value}\nheight: {(__device.NodeMap.GetNode("Height") as IInteger).Value}\nfps: {__fps}\n");
 #endif
-            var streamAutoNegotiatePacketSizeNode = (IBoolean)__device.TLStreamNodeMap.GetNode("StreamAutoNegotiatePacketSize");
-
-            streamAutoNegotiatePacketSizeNode.Value = true;
-
-            var streamPacketResendEnableNode = (IBoolean)__device.TLStreamNodeMap.GetNode("StreamPacketResendEnable");
-
-            streamPacketResendEnableNode.Value = true;
         }
         catch (Exception e)
         {
