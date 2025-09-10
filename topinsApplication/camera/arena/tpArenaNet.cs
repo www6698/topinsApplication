@@ -227,45 +227,201 @@ public class tpArenaNet : IDisposable
     //    return __converted;
     //}
 
+    private readonly object __imageLock = new object();
+
     public IImage GetImage(bool recording, uint timeout = 2000)
     {
-        if (__converted is not null)
+        lock (__imageLock)
         {
-            ImageFactory.Destroy(__converted);
-            __converted = null;
-        }
-
-        try
-        {
-            IImage image = __device.GetImage(timeout);
-
-            if (image == null) return null;
-
-            // recording 상태일 때만 이미지 저장
-            if (recording && __iimages != null)
+            // 이전 converted 이미지 정리
+            if (__converted != null)
             {
-                try
-                {
-                    var convertedForRecording = ImageFactory.Convert(image, EPfncFormat.BGR8);
-                    if (convertedForRecording != null)
-                    {
-                        __iimages.Add(new tpIImage(convertedForRecording));
-                    }
-                }
-                catch
-                {
-                    // 이미지 변환 실패 시 무시하고 계속
-                }
+                ImageFactory.Destroy(__converted);
+                __converted = null;
             }
 
-            __converted = ImageFactory.Convert(image, (EPfncFormat)0x02200017);
-            __device.RequeueBuffer(image);
+            IImage image = null;
 
-            return __converted;
+            try
+            {
+                image = __device.GetImage(timeout);
+
+                if (image == null) return null;
+
+                // 녹화 중일 때만 이미지 저장
+                if (recording && __iimages != null)
+                {
+                    try
+                    {
+                        // BGR8로 변환하여 저장
+                        var convertedForRecording = ImageFactory.Convert(image, EPfncFormat.BGR8);
+                        if (convertedForRecording != null)
+                        {
+                            __iimages.Add(new tpIImage(convertedForRecording));
+                            ImageFactory.Destroy(convertedForRecording);  // 원본 해제
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Image conversion error: {ex.Message}");
+                    }
+                }
+
+                // 화면 표시용 이미지
+                __converted = ImageFactory.Convert(image, (EPfncFormat)0x02200017);
+
+                // 원본 이미지 반환
+                __device.RequeueBuffer(image);
+
+                return __converted;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"GetImage error: {ex.Message}");
+
+                // 에러 시 리소스 정리
+                if (image != null)
+                {
+                    __device.RequeueBuffer(image);
+                }
+
+                return null;
+            }
         }
-        catch
+    }
+
+    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+    public class tpIImage : IImage, IDisposable  // IDisposable 추가
+    {
+        private readonly System.Drawing.Bitmap __bitmap;
+        private readonly byte[] __dataArray;
+        private bool __disposed = false;
+
+        public tpIImage(IImage image)
         {
-            return null;
+            __bitmap = image.Bitmap != null ? CloneBMP(image.Bitmap) : null;
+            __dataArray = image.DataArray != null ? (byte[])image.DataArray.Clone() : null;
+
+            // 모든 프로퍼티 복사
+            TimestampNs = image.TimestampNs;
+            Timestamp = image.Timestamp;
+            PixelEndianness = image.PixelEndianness;
+            BitsPerPixel = image.BitsPerPixel;
+            PixelFormat = image.PixelFormat;
+            PaddingY = image.PaddingY;  // ✅ 추가
+            PaddingX = image.PaddingX;
+            OffsetY = image.OffsetY;
+            OffsetX = image.OffsetX;
+            Height = image.Height;
+            Width = image.Width;
+            DataIsLargerThanBuffer = image.DataIsLargerThanBuffer;
+            IsIncomplete = image.IsIncomplete;
+            IsCompressedImage = image.IsCompressedImage;
+            HasChunkData = image.HasChunkData;
+            HasImageData = image.HasImageData;
+            PayloadType = image.PayloadType;
+            FrameId = image.FrameId;
+            SizeOfBuffer = image.SizeOfBuffer;
+            PayloadSize = image.PayloadSize;
+            SizeFilled = image.SizeFilled;
+            NativePtr = image.NativePtr;
+        }
+
+        // ✅ Dispose 메서드 추가
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!__disposed)
+            {
+                if (disposing)
+                {
+                    // 관리 리소스 해제
+                    __bitmap?.Dispose();
+                }
+                __disposed = true;
+            }
+        }
+
+        ~tpIImage()
+        {
+            Dispose(false);
+        }
+
+        // 프로퍼티들
+        public System.Drawing.Bitmap Bitmap => __bitmap;
+        public byte[] DataArray => __dataArray;
+
+        public ulong TimestampNs { get; }
+        public ulong Timestamp { get; }
+        public EPixelEndianness PixelEndianness { get; }
+        public uint BitsPerPixel { get; }
+        public EPfncFormat PixelFormat { get; }
+        public uint PaddingY { get; }  // ✅ 누락된 프로퍼티 추가
+        public uint PaddingX { get; }
+        public uint OffsetY { get; }
+        public uint OffsetX { get; }
+        public uint Height { get; }
+        public uint Width { get; }
+        public bool DataIsLargerThanBuffer { get; }
+        public bool IsIncomplete { get; }
+        public bool IsCompressedImage { get; }
+        public bool HasChunkData { get; }
+        public bool HasImageData { get; }
+        public EBufferPayloadType PayloadType { get; }
+        public ulong FrameId { get; }
+        public uint SizeOfBuffer { get; }
+        public uint PayloadSize { get; }
+        public uint SizeFilled { get; }
+        public nint NativePtr { get; }
+
+        // ✅ 인터페이스 메서드 구현
+        public IChunkData AsChunkData()
+        {
+            throw new NotImplementedException("This image does not contain chunk data");
+        }
+
+        public ICompressedImage AsCompressedImage()
+        {
+            throw new NotImplementedException("This image is not compressed");
+        }
+
+        public IImage AsImage()
+        {
+            return this;  // 자기 자신을 반환
+        }
+
+        public bool VerifyCRC()
+        {
+            return true;  // 복사된 이미지는 항상 유효하다고 가정
+        }
+
+        // 헬퍼 메서드들
+        public static System.Drawing.Bitmap CloneBMP(System.Drawing.Bitmap source)
+        {
+            System.Drawing.Bitmap clone = new(source.Width, source.Height, source.PixelFormat);
+            using (System.Drawing.Graphics graphic = System.Drawing.Graphics.FromImage(clone))
+            {
+                graphic.DrawImage(source, new System.Drawing.Rectangle(0, 0, source.Width, source.Height));
+            }
+            return clone;
+        }
+
+        public static void SaveBMP(System.Drawing.Bitmap source, string fileName)
+        {
+            if (source is null) return;
+            try
+            {
+                source.Save(fileName, System.Drawing.Imaging.ImageFormat.Bmp);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Failed to save image: {e.Message}");
+            }
         }
     }
 
@@ -285,6 +441,8 @@ public class tpArenaNet : IDisposable
     //    }
     //    return __image = __device.GetImage(timeout);
     //}
+
+
 
     public bool StartStream()
     {

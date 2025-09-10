@@ -100,8 +100,14 @@ public class topinsContentMvvm : tpMvvm, IDisposable
 
     public void Dispose()
     {
-        InitOperation(eTASKCREATION.Release);
+        // 녹화 중이면 먼저 중지
+        if (Recording)
+        {
+            Record(false);
+            Thread.Sleep(1000);  // 저장 완료 대기
+        }
 
+        InitOperation(eTASKCREATION.Release);
         __controlPad.Dispose();
     }
 
@@ -290,40 +296,53 @@ public class topinsContentMvvm : tpMvvm, IDisposable
 
     private async Task GetImage(bool recording)
     {
-        if (__arena.Connected)
+        if (!__arena.Connected) return;
+
+        try
         {
-            try
+            ArenaNET.IImage image = __arena.GetImage(recording);
+
+            if (image == null) return;
+
+            // UI 업데이트는 Dispatcher 사용
+            await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                await Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
+                try
                 {
-                    ArenaNET.IImage image = __arena.GetImage(recording);
-
-                    // ★ null 체크
-                    if (image == null)
+                    // 1분 체크
+                    if (recording && __recordWatch != null &&
+                        __iosetting.IOGeneric.RecordingTime <= __recordWatch.ElapsedMilliseconds)
                     {
-                        System.Diagnostics.Debug.WriteLine("Failed to get image from camera");
-                        return;
-                    }
-
-                    if (recording && __iosetting.IOGeneric.RecordingTime <= __recordWatch.ElapsedMilliseconds)
+                        // 저장 후 새 녹화 시작
                         SaveStream();
 
-                    using MemoryStream memory = new();
+                        lock (__recordLock)
+                        {
+                            __streamH264 = Path.Combine(__iosetting.IOGeneric.StreamFolder,
+                                $"{tpCONST.TOPINS}_{DateTime.Now:yyyyMMdd_HHmmss}_stream.mp4");
+                            __arena.IImages = new List<ArenaNET.IImage>();
+                            __recordWatch.Restart();
+                        }
+                    }
+
+                    // 화면 표시
                     if (image.Bitmap != null)
                     {
-                        image.Bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
-                        memory.Position = 0;
-
-                        BitmapImage bmpImage = BitmapToBitmapImage(image.Bitmap);
-                        image.Bitmap.Dispose();
-                        Image = bmpImage;
+                        using (var bitmap = new System.Drawing.Bitmap(image.Bitmap))
+                        {
+                            Image = BitmapToBitmapImage(bitmap);
+                        }
                     }
-                });
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"GetImage error: {ex.Message}");
-            }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"UI update error: {ex.Message}");
+                }
+            }, DispatcherPriority.Background);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"GetImage error: {ex.Message}");
         }
     }
 
@@ -372,44 +391,68 @@ public class topinsContentMvvm : tpMvvm, IDisposable
 
     private void SaveStream(int count = 0)
     {
-        try
+        Task.Run(() =>
         {
-            if (__arena?.IImages == null || __arena.IImages.Count == 0)
-                return;
-
-            if (__arena.IImages[0] == null)
-                return;
-
-            if (string.IsNullOrEmpty(__streamH264))
-                return;
-
-            string directory = System.IO.Path.GetDirectoryName(__streamH264);
-            if (!System.IO.Directory.Exists(directory))
+            try
             {
-                System.IO.Directory.CreateDirectory(directory);
-            }
+                List<ArenaNET.IImage> tempImages = null;
 
-            SaveNET.VideoParams parameters = new(__arena.IImages[0].Width, __arena.IImages[0].Height, __arena.FPS);
-            SaveNET.VideoRecorder recorder = new(parameters, __streamH264);
-
-            recorder.SetH264Mp4BGR8();
-            recorder.Open();
-
-            for (int i = 0; i < __arena.IImages.Count; i++)
-            {
-                if (__arena.IImages[i]?.DataArray != null)
+                lock (__recordLock)
                 {
-                    recorder.AppendImage(__arena.IImages[i].DataArray);
-                }
-            }
+                    if (__arena?.IImages == null || __arena.IImages.Count == 0)
+                        return;
 
-            recorder.Close();
-            __recordWatch?.Restart();
-        }
-        catch (Exception ex)
-        {
-            // 오류 무시하고 계속 진행
-        }
+                    tempImages = new List<ArenaNET.IImage>(__arena.IImages);
+                    __arena.IImages.Clear();
+                }
+
+                if (string.IsNullOrEmpty(__streamH264))
+                    return;
+
+                string directory = Path.GetDirectoryName(__streamH264);
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                SaveNET.VideoParams parameters = new(
+                    tempImages[0].Width,
+                    tempImages[0].Height,
+                    __arena.FPS);
+
+                using (SaveNET.VideoRecorder recorder = new(parameters, __streamH264))
+                {
+                    recorder.SetH264Mp4BGR8();
+                    recorder.Open();
+
+                    foreach (var img in tempImages)
+                    {
+                        if (img?.DataArray != null)
+                        {
+                            recorder.AppendImage(img.DataArray);
+                        }
+                    }
+
+                    recorder.Close();
+                }
+
+                //메모리 해제 부분 수정
+                foreach (var img in tempImages)
+                {
+                    if (img is IDisposable disposableImg)  // IDisposable 인터페이스 체크
+                    {
+                        disposableImg.Dispose();
+                    }
+                }
+                tempImages.Clear();
+
+                System.Diagnostics.Debug.WriteLine($"Video saved successfully: {__streamH264}");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"SaveStream error: {ex.Message}");
+            }
+        });
     }
 
     private void SaveBMP()
@@ -488,58 +531,74 @@ public class topinsContentMvvm : tpMvvm, IDisposable
     });
 
     private readonly object __recordLock = new object();
+    private volatile bool __isRecording = false;
+    private volatile bool __isSaving = false;
+
 
     public async void Record(bool record)
     {
-        lock (__recordLock)
+        try
         {
-            try
+            if (record)
             {
-                if (record)
+                lock (__recordLock)
                 {
-                    __streamH264 = Path.Combine(__iosetting.IOGeneric.StreamFolder, $"{tpCONST.TOPINS}_{DateTime.Now:yyyyMMdd_HHmmss}_stream.mp4");
+                    if (__recording) return;
+
+                    __streamH264 = Path.Combine(__iosetting.IOGeneric.StreamFolder,
+                        $"{tpCONST.TOPINS}_{DateTime.Now:yyyyMMdd_HHmmss}_stream.mp4");
                     __arena.IImages = new List<ArenaNET.IImage>();
 
                     __recordWatch = new System.Diagnostics.Stopwatch();
                     __recordWatch.Restart();
 
-                    Recording = record;
-                }
-                else
-                {
-                    Recording = false; // 먼저 상태 변경
+                    Recording = true;
                 }
             }
-            catch { }
-        }
-
-        // lock 밖에서 비동기 작업
-        if (!record)
-        {
-            await Task.Delay(200); // 대기 시간 증가
-
-            lock (__recordLock)
+            else
             {
-                try
-                {
-                    if (__arena.IImages != null && __arena.IImages.Count > 0)
-                    {
-                        SaveStream();
-                    }
+                Recording = false;  // 즉시 녹화 플래그 해제
 
-                    __recordWatch?.Stop();
-                    __recordWatch = null;
-                    __arena.IImages = null;
-                    __streamH264 = string.Empty;
-                }
-                catch
+                // 마지막 프레임 수집을 위해 잠시 대기
+                await Task.Delay(200);
+
+                // 저장 중이면 대기
+                while (__isSaving)
                 {
-                    __recordWatch?.Stop();
-                    __recordWatch = null;
-                    __arena.IImages = null;
-                    Recording = false;
+                    await Task.Delay(100);
                 }
+
+                __isSaving = true;
+
+                await Task.Run(() =>
+                {
+                    try
+                    {
+                        lock (__recordLock)
+                        {
+                            if (__arena?.IImages != null && __arena.IImages.Count > 0)
+                            {
+                                SaveStream();
+                            }
+
+                            __recordWatch?.Stop();
+                            __recordWatch = null;
+                            __arena.IImages = null;
+                            __streamH264 = string.Empty;
+                        }
+                    }
+                    finally
+                    {
+                        __isSaving = false;
+                    }
+                });
             }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Record error: {ex.Message}");
+            Recording = false;
+            __isSaving = false;
         }
     }
 
