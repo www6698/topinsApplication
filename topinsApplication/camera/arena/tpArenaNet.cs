@@ -232,20 +232,41 @@ public class tpArenaNet : IDisposable
         if (__converted is not null)
         {
             ImageFactory.Destroy(__converted);
-
             __converted = null;
         }
-        IImage image = __device.GetImage(timeout);
 
-
-        if (recording)
+        try
         {
-            __iimages.Add(new tpIImage(ImageFactory.Convert(image, EPfncFormat.BGR8)));
-        }
-        __converted = ImageFactory.Convert(image, (EPfncFormat)0x02200017);
-        __device.RequeueBuffer(image);
+            IImage image = __device.GetImage(timeout);
 
-        return __converted;
+            if (image == null) return null;
+
+            // recording 상태일 때만 이미지 저장
+            if (recording && __iimages != null)
+            {
+                try
+                {
+                    var convertedForRecording = ImageFactory.Convert(image, EPfncFormat.BGR8);
+                    if (convertedForRecording != null)
+                    {
+                        __iimages.Add(new tpIImage(convertedForRecording));
+                    }
+                }
+                catch
+                {
+                    // 이미지 변환 실패 시 무시하고 계속
+                }
+            }
+
+            __converted = ImageFactory.Convert(image, (EPfncFormat)0x02200017);
+            __device.RequeueBuffer(image);
+
+            return __converted;
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     //public IImage GetIImage(uint timeout = 2000)

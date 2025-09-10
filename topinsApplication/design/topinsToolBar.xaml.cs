@@ -300,7 +300,10 @@ public class topinsToolBarMvvm : tpMvvm, IDisposable
 
     public void OnPlayStream(object parameter)
     {
-
+        if (__content.Device != null)
+        {
+            __content.Run(__content.Device);
+        }
     }
 
     public bool CanStopStream(object parameter) => ButtonEnabled(parameter);

@@ -298,23 +298,31 @@ public class topinsContentMvvm : tpMvvm, IDisposable
                 {
                     ArenaNET.IImage image = __arena.GetImage(recording);
 
-                    if (recording && __iosetting.IOGeneric.RecordingTime <= __recordWatch.ElapsedMilliseconds) SaveStream();
+                    // ★ null 체크
+                    if (image == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Failed to get image from camera");
+                        return;
+                    }
+
+                    if (recording && __iosetting.IOGeneric.RecordingTime <= __recordWatch.ElapsedMilliseconds)
+                        SaveStream();
 
                     using MemoryStream memory = new();
-                    image.Bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
-                    memory.Position = 0;
+                    if (image.Bitmap != null)
+                    {
+                        image.Bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                        memory.Position = 0;
 
-                    BitmapImage bmpImage = BitmapToBitmapImage(image.Bitmap);
-
-                    image.Bitmap.Dispose();
-
-                    Image = bmpImage;
+                        BitmapImage bmpImage = BitmapToBitmapImage(image.Bitmap);
+                        image.Bitmap.Dispose();
+                        Image = bmpImage;
+                    }
                 });
-                //await Task.Delay(10);
             }
-            catch
+            catch (Exception ex)
             {
-                // 여기 들어오면 stop 시킨다
+                System.Diagnostics.Debug.WriteLine($"GetImage error: {ex.Message}");
             }
         }
     }
@@ -364,20 +372,46 @@ public class topinsContentMvvm : tpMvvm, IDisposable
 
     private void SaveStream(int count = 0)
     {
-        SaveNET.VideoParams parameters = new(__arena.IImages[0].Width, __arena.IImages[0].Height, __arena.FPS);
-        SaveNET.VideoRecorder recorder = new(parameters, __streamH264);
-
-        recorder.SetH264Mp4BGR8();
-        recorder.Open();
-
-        for (int i = 0; i < __arena.IImages.Count; i++)
+        try
         {
-            recorder.AppendImage(__arena.IImages[i].DataArray);
-        }
-        recorder.Close();
+            if (__arena?.IImages == null || __arena.IImages.Count == 0)
+                return;
 
-        __recordWatch.Restart();
+            if (__arena.IImages[0] == null)
+                return;
+
+            if (string.IsNullOrEmpty(__streamH264))
+                return;
+
+            string directory = System.IO.Path.GetDirectoryName(__streamH264);
+            if (!System.IO.Directory.Exists(directory))
+            {
+                System.IO.Directory.CreateDirectory(directory);
+            }
+
+            SaveNET.VideoParams parameters = new(__arena.IImages[0].Width, __arena.IImages[0].Height, __arena.FPS);
+            SaveNET.VideoRecorder recorder = new(parameters, __streamH264);
+
+            recorder.SetH264Mp4BGR8();
+            recorder.Open();
+
+            for (int i = 0; i < __arena.IImages.Count; i++)
+            {
+                if (__arena.IImages[i]?.DataArray != null)
+                {
+                    recorder.AppendImage(__arena.IImages[i].DataArray);
+                }
+            }
+
+            recorder.Close();
+            __recordWatch?.Restart();
+        }
+        catch (Exception ex)
+        {
+            // 오류 무시하고 계속 진행
+        }
     }
+
     private void SaveBMP()
     {
 
@@ -453,39 +487,96 @@ public class topinsContentMvvm : tpMvvm, IDisposable
         OnRefresh(__arena.RefreshDevices());
     });
 
-    public void Record(bool record)
+    private readonly object __recordLock = new object();
+
+    public async void Record(bool record)
     {
-        if (record)
+        lock (__recordLock)
         {
-            __streamH264 = $"{__iosetting.IOGeneric.StreamFolder}{tpCONST.TOPINS}_{DateTime.Now:yyyyMMdd_HHmmss}_stream.mp4";
-            __arena.IImages = [];
+            try
+            {
+                if (record)
+                {
+                    __streamH264 = Path.Combine(__iosetting.IOGeneric.StreamFolder, $"{tpCONST.TOPINS}_{DateTime.Now:yyyyMMdd_HHmmss}_stream.mp4");
+                    __arena.IImages = new List<ArenaNET.IImage>();
 
-            __recordWatch = new System.Diagnostics.Stopwatch();
-            __recordWatch.Restart();
+                    __recordWatch = new System.Diagnostics.Stopwatch();
+                    __recordWatch.Restart();
+
+                    Recording = record;
+                }
+                else
+                {
+                    Recording = false; // 먼저 상태 변경
+                }
+            }
+            catch { }
         }
-        else
+
+        // lock 밖에서 비동기 작업
+        if (!record)
         {
-            __recordWatch.Stop();
-            __recordWatch = null;
+            await Task.Delay(200); // 대기 시간 증가
 
-            __arena.IImages = null;
+            lock (__recordLock)
+            {
+                try
+                {
+                    if (__arena.IImages != null && __arena.IImages.Count > 0)
+                    {
+                        SaveStream();
+                    }
 
-            __streamH264 = string.Empty;
+                    __recordWatch?.Stop();
+                    __recordWatch = null;
+                    __arena.IImages = null;
+                    __streamH264 = string.Empty;
+                }
+                catch
+                {
+                    __recordWatch?.Stop();
+                    __recordWatch = null;
+                    __arena.IImages = null;
+                    Recording = false;
+                }
+            }
         }
-        Recording = record;
-
-#if DEBUG && FORDEBUG
-        System.Diagnostics.Debug.WriteLine($"       topinsContentMvvm::Record({record})     >>>");
-#endif
     }
 
     public void Screen(string timestamp)
     {
-        __screenshot = $"{__iosetting.IOGeneric.ScreenShotFolder}{tpCONST.TOPINS}_{DateTime.Now:yyyyMMdd_HHmmss}.mp4";
+        try
+        {
+            if (__arena.Connected && Image != null)
+            {
+                // BMP 확장자로 변경
+                __screenshot = $"{__iosetting.IOGeneric.ScreenShotFolder}\\{tpCONST.TOPINS}_{DateTime.Now:yyyyMMdd_HHmmss}.bmp";
 
-#if DEBUG && !FORDEBUG
-        System.Diagnostics.Debug.WriteLine($"       topinsContentMvvm::Screen({timestamp})     >>>");
-#endif
+                // 폴더 생성
+                string directory = System.IO.Path.GetDirectoryName(__screenshot);
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                // 현재 화면 이미지를 파일로 저장
+                if (Image is BitmapImage bitmapImage)
+                {
+                    BitmapEncoder encoder = new PngBitmapEncoder(); // 또는 JpegBitmapEncoder
+                    encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+
+                    using (var fileStream = new System.IO.FileStream(__screenshot.Replace(".bmp", ".png"), System.IO.FileMode.Create))
+                    {
+                        encoder.Save(fileStream);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // 에러 발생 시에만 출력 (필요하면 이것도 제거 가능)
+            // System.Diagnostics.Debug.WriteLine($"스크린샷 저장 오류: {ex.Message}");
+        }
     }
 
     //public void Focus(string key) => TxCommand?.Invoke(this, new tpioTxCommandEventArgs(key, __iosetting.Protocol.GetCameraCommand(key)));

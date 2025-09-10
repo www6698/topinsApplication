@@ -14,7 +14,7 @@ public class tpSerialCommunication : INotifyPropertyChanged, IDisposable
     public event PropertyChangedEventHandler PropertyChanged;
     #endregion
 
-    public tpSerialCommunication() : this("COM14", 9600) { }
+    public tpSerialCommunication() : this("COM3", 9600) { }
     public tpSerialCommunication(string portName, int baudRate) : this(portName, baudRate, 8, StopBits.One, Parity.None) { }
     public tpSerialCommunication(string portName, int baudRate, int dataBits, StopBits stopBits, Parity parity)
     {
