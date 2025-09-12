@@ -280,6 +280,7 @@ public class tpArenaNet : IDisposable
 
     private readonly object __imageLock = new object();
 
+    // GetImage 메서드 수정
     public IImage GetImage(bool recording, uint timeout = 2000)
     {
         lock (__imageLock)
@@ -292,11 +293,9 @@ public class tpArenaNet : IDisposable
             }
 
             IImage image = null;
-
             try
             {
                 image = __device.GetImage(timeout);
-
                 if (image == null) return null;
 
                 // 녹화 중일 때만 이미지 저장
@@ -304,17 +303,21 @@ public class tpArenaNet : IDisposable
                 {
                     try
                     {
-                        // BGR8로 변환하여 저장
-                        var convertedForRecording = ImageFactory.Convert(image, EPfncFormat.BGR8);
+                        // 복사본 생성 (원본을 바로 사용하지 않음)
+                        var clonedImage = ImageFactory.Copy(image);
+                        var convertedForRecording = ImageFactory.Convert(clonedImage, EPfncFormat.BGR8);
+
                         if (convertedForRecording != null)
                         {
                             __iimages.Add(new tpIImage(convertedForRecording));
-                            ImageFactory.Destroy(convertedForRecording);  // 원본 해제
+                            ImageFactory.Destroy(convertedForRecording);
                         }
+
+                        ImageFactory.Destroy(clonedImage);
                     }
                     catch (Exception ex)
                     {
-                        System.Diagnostics.Debug.WriteLine($"Image conversion error: {ex.Message}");
+                        System.Diagnostics.Debug.WriteLine($"Recording error: {ex.Message}");
                     }
                 }
 
@@ -330,7 +333,6 @@ public class tpArenaNet : IDisposable
             {
                 System.Diagnostics.Debug.WriteLine($"GetImage error: {ex.Message}");
 
-                // 에러 시 리소스 정리
                 if (image != null)
                 {
                     __device.RequeueBuffer(image);
